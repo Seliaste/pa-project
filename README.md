@@ -1,4 +1,4 @@
-# opengl-doomlike
+# pa-project
 
 Doomlike running on OpenGL
 
