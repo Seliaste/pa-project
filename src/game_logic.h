@@ -21,6 +21,8 @@ typedef struct{
     car player;
 } data_struct;
 
-int compute_logic(SDL_Renderer* renderer);
+data_struct init_game_data();
+
+int compute_logic(SDL_Renderer* renderer, data_struct* data);
 
 #endif
