@@ -1,8 +1,16 @@
+/**
+ * @file main.cpp
+ * @author Aéna Aria (aena.aria2@etu.univ-lorraine.fr)
+ * @brief Fichier main exécutable
+ * @date 2022-10-26
+ */
 #ifndef MAIN_CPP
 #define MAIN_CPP
 
 #include <iostream>
 #include <SDL2/SDL.h>
+#include "game_logic.h"
+#include "graphics.h"
 
 int main(int argc, char const *argv[])
 {
@@ -43,6 +51,7 @@ int main(int argc, char const *argv[])
                 break;
             }
         }
+        compute_logic(renderer);
         SDL_RenderPresent(renderer);
     }
     // Quitter SDL
