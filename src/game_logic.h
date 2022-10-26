@@ -18,11 +18,13 @@ typedef struct {
 } car;
 
 typedef struct{
-    car player;
+    car* player;
 } data_struct;
 
-data_struct init_game_data();
+data_struct* init_game_data();
 
 int compute_logic(SDL_Renderer* renderer, data_struct* data);
+
+void clear_game_data(data_struct* data);
 
 #endif
