@@ -65,4 +65,7 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
+
 # End of https://mrkandreev.name/snippets/gitignore-generator/#C,CMake
+
+PA-Project
