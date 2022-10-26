@@ -24,6 +24,7 @@ int main(int argc, char const *argv[])
         SDL_Quit();
         return EXIT_FAILURE;
     }
+    SDL_Renderer* ecran = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
     // Boucle principale
     while (!terminer)
     {
@@ -42,6 +43,7 @@ int main(int argc, char const *argv[])
                 break;
             }
         }
+        SDL_RenderPresent(ecran);
     }
     // Quitter SDL
     SDL_DestroyWindow(fenetre);

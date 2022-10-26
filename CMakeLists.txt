@@ -4,9 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(SDL2 REQUIRED)
-
-include(CTest)
-enable_testing()
+include_directories(PA-Project ${SDL2_INCLUDE_DIRS})
 
 add_executable(PA-Project src/main.cpp)
 
