@@ -1,13 +1,21 @@
+/**
+ * @file main.cpp
+ * @author Aéna Aria (aena.aria2@etu.univ-lorraine.fr)
+ * @brief Fichier main exécutable
+ * @date 2022-10-26
+ */
 #ifndef MAIN_CPP
 #define MAIN_CPP
 
 #include <iostream>
 #include <SDL2/SDL.h>
+#include "game_logic.h"
+#include "graphics.h"
 
 int main(int argc, char const *argv[])
 {
-    SDL_Window *fenetre;  // Déclaration de la fenêtre
-    SDL_Event evenements; // Événements liés à la fenêtre
+    SDL_Window *window;  // Déclaration de la fenêtre
+    SDL_Event events; // Événements liés à la fenêtre
     bool terminer = false;
     if (SDL_Init(SDL_INIT_VIDEO) < 0) // Initialisation de la SDL
     {
@@ -16,26 +24,26 @@ int main(int argc, char const *argv[])
         return EXIT_FAILURE;
     }
     // Créer la fenêtre
-    fenetre = SDL_CreateWindow("Fenetre SDL", SDL_WINDOWPOS_CENTERED,
+    window = SDL_CreateWindow("Fenetre SDL", SDL_WINDOWPOS_CENTERED,
                                SDL_WINDOWPOS_CENTERED, 600, 600, SDL_WINDOW_RESIZABLE);
-    if (fenetre == NULL) // En cas d’erreur
+    if (window == NULL) // En cas d’erreur
     {
         printf("Erreur de la creation d’une fenetre: %s", SDL_GetError());
         SDL_Quit();
         return EXIT_FAILURE;
     }
-    SDL_Renderer* ecran = SDL_CreateRenderer(fenetre, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     // Boucle principale
     while (!terminer)
     {
-        SDL_PollEvent(&evenements);
-        switch (evenements.type)
+        SDL_PollEvent(&events);
+        switch (events.type)
         {
         case SDL_QUIT:
             terminer = true;
             break;
         case SDL_KEYDOWN:
-            switch (evenements.key.keysym.sym)
+            switch (events.key.keysym.sym)
             {
             case SDLK_ESCAPE:
             case SDLK_q:
@@ -43,10 +51,11 @@ int main(int argc, char const *argv[])
                 break;
             }
         }
-        SDL_RenderPresent(ecran);
+        // compute_logic(renderer);
+        SDL_RenderPresent(renderer);
     }
     // Quitter SDL
-    SDL_DestroyWindow(fenetre);
+    SDL_DestroyWindow(window);
     SDL_Quit();
     return 0;
 }

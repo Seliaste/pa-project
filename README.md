@@ -2,7 +2,7 @@
 
 2D racing game in SDL
 
-- Menu 
+- Menu
 
 - Different tracks (txt files)
 
@@ -16,4 +16,6 @@
 
 - Save best time for each track in a file
 
-- Ranking with a queue 
+- Ranking with a queue
+
+- Procedural track generation
