@@ -72,3 +72,4 @@ CPackConfig.cmake
 CPackSourceConfig.cmake
 DartConfiguration.tcl
 PA-Project
+build/*
