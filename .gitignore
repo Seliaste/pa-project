@@ -74,3 +74,4 @@ DartConfiguration.tcl
 PA-Project
 build/*
 !build/.gitkeep
+.vscode/
