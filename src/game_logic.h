@@ -9,6 +9,16 @@
 
 #include <SDL2/SDL.h>
 
+typedef struct {
+    int pos_x;
+    int pos_y;
+    int rot;
+} car;
+
+typedef struct{
+    car player;
+} data_struct;
+
 int compute_logic(SDL_Renderer* renderer);
 
 #endif

@@ -51,7 +51,7 @@ int main(int argc, char const *argv[])
                 break;
             }
         }
-        compute_logic(renderer);
+        // compute_logic(renderer);
         SDL_RenderPresent(renderer);
     }
     // Quitter SDL
