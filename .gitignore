@@ -68,4 +68,7 @@ _deps
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#C,CMake
 
+CPackConfig.cmake
+CPackSourceConfig.cmake
+DartConfiguration.tcl
 PA-Project
