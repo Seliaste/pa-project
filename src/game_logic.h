@@ -10,9 +10,11 @@
 #include <SDL2/SDL.h>
 
 typedef struct {
-    int pos_x;
-    int pos_y;
-    int rot;
+    double pos_x;
+    double pos_y;
+    double rot;
+    double vel_x;
+    double vel_y;
 } car;
 
 typedef struct{
