@@ -13,8 +13,7 @@ typedef struct {
     double pos_x;
     double pos_y;
     double rot;
-    double vel_x;
-    double vel_y;
+    double front_vel;
 } car;
 
 typedef struct{
