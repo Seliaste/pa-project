@@ -56,6 +56,7 @@ int main(int argc, char const *argv[])
             }
         }
         compute_logic(data);
+        display_images(renderer);
         SDL_RenderPresent(renderer);
         // SDL_Delay(0.17 - (SDL_GetTicks() - tmp) ); - not working yet
     }
