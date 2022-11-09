@@ -16,8 +16,32 @@ typedef struct resources_s
     SDL_Texture *background; /*!< Texture liée à l'image du fond de l'écran. */
 } resources_t;
 
-void init_graphics(SDL_Renderer *renderer, resources_t *resources);
+/**
+ * @brief efface les données graphiques
+ * 
+ * @param resources 
+ */
 void clean_graphics(resources_t *resources);
-void apply_background(SDL_Renderer *renderer, resources_t *resources);
+
+/**
+ * @brief charge une image à partir d'un fichier
+ * 
+ * @param nomfichier 
+ * @param renderer 
+ * @return SDL_Texture* 
+ */
+SDL_Texture* charger_image (const char* nomfichier, SDL_Renderer* renderer);
+/**
+ * @brief charge une image et rend le fond transparent à partir d'un fichier
+ * 
+ * @param nomfichier 
+ * @param renderer 
+ * @param r 
+ * @param g 
+ * @param b 
+ * @return SDL_Texture* 
+ */
+SDL_Texture* charger_image_transparente(const char* nomfichier,SDL_Renderer* renderer,Uint8 r,Uint8 g,Uint8 b);
+
 
 #endif
