@@ -7,18 +7,17 @@
 
 #define V_MAX 50
 
-typedef struct {
+class Car{
+private:
     double pos_x;
     double pos_y;
     double rot;
     double front_vel;
     double curr_speed_x; // for speed_function calculation
-} car;
+    static double speed_function(double x);
 
-void init_car(car* input,int x, int y);
-
-void compute_car_position(car* car);
-
-double speed_function(double x);
-
+public:
+    Car(int x, int y);
+    void compute_car_position();
+};
 #endif //PA_PROJECT_CAR_H
