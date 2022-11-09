@@ -32,12 +32,14 @@ int main(int argc, char const *argv[])
         SDL_Quit();
         return EXIT_FAILURE;
     }
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     data_struct* data = init_game_data();// initialisation des données
+    Uint64 tmp;
     // Boucle principale
     while (!terminer)
     {
+        tmp = SDL_GetTicks();
         SDL_PollEvent(&events);
         switch (events.type)
         {
@@ -55,6 +57,7 @@ int main(int argc, char const *argv[])
         }
         compute_logic(data);
         SDL_RenderPresent(renderer);
+        // SDL_Delay(0.17 - (SDL_GetTicks() - tmp) ); - not working yet
     }
     // clean des données
     clear_game_data(data);
