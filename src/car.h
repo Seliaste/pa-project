@@ -17,6 +17,8 @@ typedef struct {
 
 void init_car(car* input,int x, int y);
 
+void compute_car_position(car* car);
+
 double speed_function(double x);
 
 #endif //PA_PROJECT_CAR_H

@@ -16,7 +16,7 @@ typedef struct{
 
 data_struct* init_game_data();
 
-int compute_logic(SDL_Renderer* renderer, data_struct* data);
+void compute_logic(data_struct* data);
 
 void clear_game_data(data_struct* data);
 

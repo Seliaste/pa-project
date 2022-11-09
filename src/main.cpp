@@ -33,6 +33,8 @@ int main(int argc, char const *argv[])
         return EXIT_FAILURE;
     }
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+    data_struct* data = init_game_data();// initialisation des données
     // Boucle principale
     while (!terminer)
     {
@@ -51,9 +53,11 @@ int main(int argc, char const *argv[])
                 break;
             }
         }
-        // compute_logic(renderer);
+        compute_logic(data);
         SDL_RenderPresent(renderer);
     }
+    // clean des données
+    clear_game_data(data);
     // Quitter SDL
     SDL_DestroyWindow(window);
     SDL_Quit();
