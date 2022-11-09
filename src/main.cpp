@@ -33,6 +33,8 @@ int main(int argc, char const *argv[])
         return EXIT_FAILURE;
     }
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Texture* background = load_image( "road.bmp", renderer );
+    SDL_Texture* truck = load_transparent_image( "truck.bmp", renderer, 255, 255, 255 );
     // Boucle principale
     while (!terminer)
     {

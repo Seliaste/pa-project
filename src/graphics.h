@@ -30,7 +30,7 @@ void clean_graphics(resources_t *resources);
  * @param renderer 
  * @return SDL_Texture* 
  */
-SDL_Texture* charger_image (const char* nomfichier, SDL_Renderer* renderer);
+SDL_Texture* load_image (const char* nomfichier, SDL_Renderer* renderer);
 /**
  * @brief charge une image et rend le fond transparent à partir d'un fichier
  * 
@@ -41,7 +41,7 @@ SDL_Texture* charger_image (const char* nomfichier, SDL_Renderer* renderer);
  * @param b 
  * @return SDL_Texture* 
  */
-SDL_Texture* charger_image_transparente(const char* nomfichier,SDL_Renderer* renderer,Uint8 r,Uint8 g,Uint8 b);
+SDL_Texture* load_transparent_image(const char* nomfichier,SDL_Renderer* renderer,Uint8 r,Uint8 g,Uint8 b);
 
 
 #endif
