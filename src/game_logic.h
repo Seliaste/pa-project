@@ -8,13 +8,7 @@
 #define GAME_LOGIC_H
 
 #include <SDL2/SDL.h>
-
-typedef struct {
-    double pos_x;
-    double pos_y;
-    double rot;
-    double front_vel;
-} car;
+#include "car.h"
 
 typedef struct{
     car* player;
