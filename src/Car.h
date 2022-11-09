@@ -5,10 +5,10 @@
 #ifndef PA_PROJECT_CAR_H
 #define PA_PROJECT_CAR_H
 
-#define V_MAX 50
-
 class Car{
 private:
+    static const int v_max = 50;
+    const double acceleration = 0.1;
     double pos_x;
     double pos_y;
     double rot;
@@ -19,5 +19,6 @@ private:
 public:
     Car(int x, int y);
     void compute_car_position();
+    void accelerate();
 };
 #endif //PA_PROJECT_CAR_H

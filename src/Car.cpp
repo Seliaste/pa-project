@@ -20,5 +20,11 @@ void Car::compute_car_position(){
 }
 
 double Car::speed_function(double x){
-    return 1 - exp(5.*x);
+    return 1 - exp(v_max*x);
+}
+
+void Car::accelerate(){
+    if(curr_speed_x < 1){
+        curr_speed_x += acceleration;
+    }
 }
