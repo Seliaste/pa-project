@@ -8,10 +8,10 @@
 #define GAME_LOGIC_H
 
 #include <SDL2/SDL.h>
-#include "car.h"
+#include "Car.h"
 
 typedef struct{
-    car* player;
+    Car* player;
 } data_struct;
 
 data_struct* init_game_data();
