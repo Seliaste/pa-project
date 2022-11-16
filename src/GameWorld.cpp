@@ -15,3 +15,7 @@ void GameWorld::update_world(EventManager* events){
 void GameWorld::clear_game_data(){
     delete player;
 }
+
+Car *GameWorld::getPlayerCar() {
+    return player;
+}

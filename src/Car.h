@@ -40,5 +40,8 @@ public:
      */
     void steer(int rate);
 
+    double get_pos_x();
+
+    double get_pos_y();
 };
 #endif //PA_PROJECT_CAR_H

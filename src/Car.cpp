@@ -33,3 +33,11 @@ void Car::accelerate(){
 void Car::steer(int rate) {
     rot += rate*turnrate;
 }
+
+double Car::get_pos_x() {
+    return pos_x;
+}
+
+double Car::get_pos_y() {
+    return pos_y;
+}

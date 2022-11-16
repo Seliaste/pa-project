@@ -28,6 +28,7 @@ public:
      */
     void clear_game_data();
 
+    Car* getPlayerCar();
 };
 
 #endif

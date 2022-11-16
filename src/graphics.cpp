@@ -30,7 +30,7 @@ void load_from_file(const char* namefile,SDL_Renderer* renderer, const char* ima
     }
     fclose(file);
 }
-void display_images(SDL_Renderer* renderer){
+void display_images(SDL_Renderer* renderer,GameWorld* world){
     SDL_Texture* background = load_image("../resources/road.bmp", renderer);
     SDL_Texture* truck = load_transparent_image("../resources/trashmaster.bmp", renderer, 255, 255, 255);
     SDL_Point size;
@@ -41,8 +41,8 @@ void display_images(SDL_Renderer* renderer){
     SrcR.w = size.x;
     SrcR.h = size.y;
     SDL_Rect DestR;
-    DestR.x = 350;
-    DestR.y = 350;
+    DestR.x = ceil(world->getPlayerCar()->get_pos_x());
+    DestR.y = ceil(world->getPlayerCar()->get_pos_y());
     DestR.w = size.x;
     DestR.h = size.y;
     SDL_RenderCopy(renderer, background, NULL, NULL);

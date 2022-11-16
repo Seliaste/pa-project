@@ -58,6 +58,6 @@ void load_from_file(const char* namefile,SDL_Renderer* renderer, const char* ima
  * @param renderer
  * @return void
  */
-void display_images(SDL_Renderer* renderer);
+void display_images(SDL_Renderer* renderer, GameWorld* world);
 
 #endif
