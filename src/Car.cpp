@@ -24,7 +24,8 @@ double Car::speed_function(double x){
 }
 
 void Car::accelerate(){
-    if(curr_speed_x < 1){
-        curr_speed_x += acceleration;
+    curr_speed_x += acceleration;
+    if(curr_speed_x > 1){
+        curr_speed_x = 1;
     }
 }

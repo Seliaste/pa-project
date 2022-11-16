@@ -9,6 +9,7 @@
 
 #include <SDL2/SDL.h>
 #include "Car.h"
+#include "EventManager.h"
 
 typedef struct{
     Car* player;
@@ -16,7 +17,7 @@ typedef struct{
 
 data_struct* init_game_data();
 
-void compute_logic(data_struct* data);
+void compute_logic(data_struct* data, EventManager* events);
 
 void clear_game_data(data_struct* data);
 
