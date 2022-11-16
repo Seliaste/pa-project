@@ -44,6 +44,16 @@ SDL_Texture* load_image (const char* nomfichier, SDL_Renderer* renderer);
 SDL_Texture* load_transparent_image(const char* nomfichier,SDL_Renderer* renderer,Uint8 r,Uint8 g,Uint8 b);
 
 /**
+ *
+ * @param namefile
+ * @param renderer
+ * @param image1
+ * @param image2
+ * @param image3
+ */
+void load_from_file(const char* namefile,SDL_Renderer* renderer, const char* image1, const char* image2, const char* image3);
+
+/**
  *@brief charge les images et les affiche
  * @param renderer
  * @return void

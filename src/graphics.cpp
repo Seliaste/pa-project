@@ -16,6 +16,19 @@ SDL_Texture* load_transparent_image(const char* nomfichier,SDL_Renderer* rendere
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
         return texture;
 }
+void load_from_file(const char* namefile,SDL_Renderer* renderer, const char* image1, const char* image2, const char* image3){
+    FILE* file = fopen(namefile,"r");
+    char[100] str;
+    if(file!= NULL){
+        while(fgets(str,100,file)!= NULL){
+            if(strcmp(str,"X") == 0){
+                printf("y a un X");
+                //load_image(image1,renderer);
+            }
+        }
+    }
+    fclose(file);
+}
 void display_images(SDL_Renderer* renderer){
     SDL_Texture* background = load_image("../resources/road.bmp", renderer);
     SDL_Texture* truck = load_transparent_image("../resources/trashmaster.bmp", renderer, 255, 255, 255);

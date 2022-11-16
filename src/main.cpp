@@ -53,6 +53,7 @@ int main(int argc, char const *argv[])
                 break;
             }
         }
+        //load_from_file("track1.txt",renderer,"back1.bmp","back2.bmp","back3.bmp");
         compute_logic(data);
         display_images(renderer);
         SDL_RenderPresent(renderer);
