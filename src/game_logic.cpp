@@ -7,7 +7,10 @@ data_struct* init_game_data(){
     return res;
 }
 
-void compute_logic(data_struct* data){
+void compute_logic(data_struct* data, EventManager* events){
+    if(events->get_is_accelerating()){
+        data->player->accelerate();
+    }
     data->player->compute_car_position();
 }
 
