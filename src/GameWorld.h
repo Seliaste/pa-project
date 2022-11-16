@@ -16,7 +16,16 @@ private:
     Car* player;
 public:
     GameWorld();
-    void compute_logic(EventManager* events);
+
+    /**
+     * @brief Updates the game world accordingly
+     * @param events the EventManager to poll events from
+     */
+    void update_world(EventManager* events);
+
+    /**
+     * @brief Clears memory for dynamic objects
+     */
     void clear_game_data();
 
 };

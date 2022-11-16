@@ -4,7 +4,7 @@ GameWorld::GameWorld() {
     player = new Car(0,0);
 }
 
-void GameWorld::compute_logic(EventManager* events){
+void GameWorld::update_world(EventManager* events){
     if(events->get_is_accelerating()){
         player->accelerate();
     }

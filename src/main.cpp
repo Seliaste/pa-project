@@ -42,7 +42,7 @@ int main(int argc, char const *argv[])
     {
         tmp = SDL_GetTicks();
         events->poll_events();
-        world->compute_logic(events);
+        world->update_world(events);
         display_images(renderer);
         SDL_RenderPresent(renderer);
         // SDL_Delay(0.17 - (SDL_GetTicks() - tmp) ); - not working yet
