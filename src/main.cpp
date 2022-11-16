@@ -40,6 +40,7 @@ int main(int argc, char const *argv[])
     // Boucle principale
     while (!events->get_is_quitting())
     {
+        load_from_file("../resources/track1.txt",renderer,"a.bmp","b.bmp","c.bmp");
         tmp = SDL_GetTicks();
         events->poll_events();
         compute_logic(data,events);
