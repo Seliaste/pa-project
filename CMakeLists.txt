@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(SDL2 REQUIRED)
 include_directories(PA-Project ${SDL2_INCLUDE_DIRS})
 
-add_executable(PA-Project src/main.cpp src/game_logic.cpp src/graphics.cpp src/Car.cpp src/Car.h src/EventManager.cpp src/EventManager.h)
+add_executable(PA-Project src/main.cpp src/GameWorld.cpp src/graphics.cpp src/Car.cpp src/Car.h src/EventManager.cpp src/EventManager.h)
 
 target_link_libraries(PA-Project ${SDL2_LIBRARIES})
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

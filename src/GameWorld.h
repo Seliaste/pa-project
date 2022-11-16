@@ -4,21 +4,21 @@
  * @brief Partie qui process les données de jeu
  * @date 2022-10-26
  */
-#ifndef GAME_LOGIC_H
-#define GAME_LOGIC_H
+#ifndef PA_PROJECT_GAME_WORLD_H
+#define PA_PROJECT_GAME_WORLD_H
 
 #include <SDL2/SDL.h>
 #include "Car.h"
 #include "EventManager.h"
 
-typedef struct{
+class GameWorld{
+private:
     Car* player;
-} data_struct;
+public:
+    GameWorld();
+    void compute_logic(EventManager* events);
+    void clear_game_data();
 
-data_struct* init_game_data();
-
-void compute_logic(data_struct* data, EventManager* events);
-
-void clear_game_data(data_struct* data);
+};
 
 #endif
