@@ -7,7 +7,7 @@
 EventManager::EventManager() {
     is_accelerating = false;
     is_quitting = false;
-    turnvalue = 0;
+    steeraxis = 0;
 }
 
 void EventManager::poll_events() {
@@ -34,4 +34,8 @@ bool EventManager::get_is_accelerating() {
 
 bool EventManager::get_is_quitting() {
     return this->is_quitting;
+}
+
+int EventManager::get_steering_axis() {
+    return this->steeraxis;
 }

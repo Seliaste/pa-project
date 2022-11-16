@@ -29,3 +29,7 @@ void Car::accelerate(){
         curr_speed_x = 1;
     }
 }
+
+void Car::steer(int rate) {
+    rot += rate*turnrate;
+}

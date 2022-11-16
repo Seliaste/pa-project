@@ -13,7 +13,7 @@ private:
     SDL_Event events{};
     bool is_accelerating{};
     bool is_quitting{};
-    int turnvalue{};
+    int steeraxis{};
 
 public:
     EventManager();
@@ -36,6 +36,8 @@ public:
      * @return true if the quitting should happen
      */
     bool get_is_quitting();
+
+    int get_steering_axis();
 };
 
 
