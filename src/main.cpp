@@ -9,7 +9,7 @@
 
 #include <iostream>
 #include <SDL2/SDL.h>
-#include "game_logic.h"
+#include "GameWorld.h"
 #include "graphics.h"
 #include "EventManager.h"
 
@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 
     auto* events = new EventManager();
 
-    data_struct* data = init_game_data();// initialisation des données
+    auto* world = new GameWorld();// initialisation des données
     Uint64 tmp;
     // Boucle principale
     while (!events->get_is_quitting())
@@ -43,13 +43,14 @@ int main(int argc, char const *argv[])
         load_from_file("../resources/track1.txt",renderer,"a.bmp","b.bmp","c.bmp");
         tmp = SDL_GetTicks();
         events->poll_events();
-        compute_logic(data,events);
+        world->update_world(events);
         display_images(renderer);
         SDL_RenderPresent(renderer);
         // SDL_Delay(0.17 - (SDL_GetTicks() - tmp) ); - not working yet
     }
     // clean des données
-    clear_game_data(data);
+    world->clear_game_data();
+    delete world;
     delete events;
     // Quitter SDL
     SDL_DestroyWindow(window);

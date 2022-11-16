@@ -13,13 +13,31 @@ private:
     SDL_Event events{};
     bool is_accelerating{};
     bool is_quitting{};
-    int turnvalue{};
+    int steeraxis{};
 
 public:
     EventManager();
+
+    /**
+     * @brief Polls SDL events and changes the object fields accordingly
+     */
     void poll_events();
+
+    /**
+     * @brief Is the acceleration key pressed
+     *
+     * @return true if the acceleration event is happening
+     */
     bool get_is_accelerating();
+
+    /**
+     * @brief Has a quitting event been received
+     *
+     * @return true if the quitting should happen
+     */
     bool get_is_quitting();
+
+    int get_steering_axis();
 };
 
 

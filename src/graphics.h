@@ -8,7 +8,7 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#include "game_logic.h"
+#include "GameWorld.h"
 #include <SDL2/SDL.h>
 
 typedef struct resources_s
