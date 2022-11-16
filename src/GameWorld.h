@@ -1,5 +1,5 @@
 /**
- * @file game_logic.h
+ * @file GameWorld.h
  * @author Aéna Aria (aena.aria2@etu.univ-lorraine.fr)
  * @brief Partie qui process les données de jeu
  * @date 2022-10-26
