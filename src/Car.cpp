@@ -4,19 +4,22 @@
 
 #include "Car.h"
 #include <cmath>
+#include <glm/vec2.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 
 
 Car::Car(int x, int y){
-    pos_x = x;
-    pos_y = y;
+    pos = glm::vec2(0,0);
+    pos.x = (double) x;
+    pos.y = (double) y;
     curr_speed_x = 0;
     front_vel = 0;
-    rot = 0;
+    rot = glm::vec2(1,0);
 }
 
 void Car::compute_car_position(){
     front_vel = speed_function(curr_speed_x);
-    pos_x += front_vel;
+    pos += rot*front_vel;
 }
 
 double Car::speed_function(double x){
@@ -38,14 +41,14 @@ void Car::brake() {
 }
 
 void Car::steer(int rate) {
-    rot += rate*turnrate;
+    glm::rotate(rot,(double)rate*turnrate);
 }
 
-double Car::get_pos_x() {
-    return pos_x;
+double Car::get_pos_x() const{
+    return this->pos.x;
 }
 
-double Car::get_pos_y() {
-    return pos_y;
+double Car::get_pos_y() const{
+    return this->pos.y;
 }
 

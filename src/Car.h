@@ -5,14 +5,15 @@
 #ifndef PA_PROJECT_CAR_H
 #define PA_PROJECT_CAR_H
 
+#include <glm/vec2.hpp>
+
 class Car{
 private:
     static const int v_max = 1;
     const double acceleration = 0.1;
     const double turnrate = 0.1;
-    double pos_x;
-    double pos_y;
-    double rot; // 360° of rotation. 0° = looking left from top down perspective
+    glm::dvec2 pos;
+    glm::dvec2 rot; // Vector of rotation
     double front_vel;
     double curr_speed_x; // for speed_function calculation
     static double speed_function(double x);
@@ -42,8 +43,8 @@ public:
      */
     void steer(int rate);
 
-    double get_pos_x();
+    double get_pos_x() const;
 
-    double get_pos_y();
+    double get_pos_y() const;
 };
 #endif //PA_PROJECT_CAR_H
