@@ -11,9 +11,10 @@ class EventManager {
 
 private:
     SDL_Event events{};
-    bool is_accelerating{};
-    bool is_quitting{};
-    int steeraxis{};
+    bool is_accelerating;
+    bool is_quitting;
+    bool is_braking;
+    int steeraxis;
 
 public:
     EventManager();
@@ -29,6 +30,8 @@ public:
      * @return true if the acceleration event is happening
      */
     bool get_is_accelerating();
+
+    bool get_is_braking();
 
     /**
      * @brief Has a quitting event been received

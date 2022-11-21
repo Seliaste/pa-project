@@ -20,13 +20,20 @@ void Car::compute_car_position(){
 }
 
 double Car::speed_function(double x){
-    return 1 - exp(v_max*x);
+    return (1 - exp(v_max*x));
 }
 
 void Car::accelerate(){
     curr_speed_x += acceleration;
     if(curr_speed_x > 1){
         curr_speed_x = 1;
+    }
+}
+
+void Car::brake() {
+    curr_speed_x -= acceleration;
+    if(curr_speed_x < 0){
+        curr_speed_x = 0;
     }
 }
 
@@ -41,3 +48,4 @@ double Car::get_pos_x() {
 double Car::get_pos_y() {
     return pos_y;
 }
+

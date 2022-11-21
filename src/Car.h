@@ -7,7 +7,7 @@
 
 class Car{
 private:
-    static const int v_max = 50;
+    static const int v_max = 1;
     const double acceleration = 0.1;
     const double turnrate = 0.1;
     double pos_x;
@@ -33,6 +33,8 @@ public:
      * Should be used when an acceleration event happens
      */
     void accelerate();
+
+    void brake();
 
     /**
      * @brief Updates the car rotation

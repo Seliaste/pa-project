@@ -41,7 +41,7 @@ void display_images(SDL_Renderer* renderer,GameWorld* world){
     SrcR.w = size.x;
     SrcR.h = size.y;
     SDL_Rect DestR;
-    DestR.x = ceil(world->getPlayerCar()->get_pos_x());
+    DestR.x = ceil(-world->getPlayerCar()->get_pos_x());
     DestR.y = ceil(world->getPlayerCar()->get_pos_y());
     DestR.w = size.x;
     DestR.h = size.y;
