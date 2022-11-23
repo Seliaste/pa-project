@@ -18,7 +18,6 @@ SDL_Texture* load_transparent_image(const char* nomfichier,SDL_Renderer* rendere
 }
 void load_from_file(const char* namefile,SDL_Renderer* renderer, const char* image1, const char* image2, const char* image3){
     FILE* file = fopen(namefile,"r");
-    printf("A");
     char str[100] = "";
     if(file!= NULL){
         while(fgets(str,100,file)!= NULL){
