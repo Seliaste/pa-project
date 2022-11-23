@@ -41,7 +41,7 @@ void Car::brake() {
 }
 
 void Car::steer(int rate) {
-    glm::rotate(rot,(double)rate*turnrate);
+    rot = glm::rotate(rot,(double)rate*turnrate);
 }
 
 double Car::get_pos_x() const{
