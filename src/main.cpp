@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
         tmp = SDL_GetTicks();
         events->poll_events();
         world->update_world(events);
-        graphics->display_images(world);
+        graphics->update_display(world);
         SDL_Delay( 17 - (SDL_GetTicks() - tmp) );
     }
     // clean des données
