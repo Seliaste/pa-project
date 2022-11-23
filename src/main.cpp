@@ -10,7 +10,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include "GameWorld.h"
-#include "graphics.h"
+#include "GraphicsManager.h"
 #include "EventManager.h"
 
 int main(int argc, char const *argv[])
@@ -31,7 +31,6 @@ int main(int argc, char const *argv[])
         SDL_Quit();
         return EXIT_FAILURE;
     }
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     auto* events = new EventManager();
 
