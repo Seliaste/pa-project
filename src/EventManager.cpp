@@ -25,10 +25,10 @@ void EventManager::poll_events() {
                     is_quitting = true;
                     break;
                 case SDLK_q:
-                    steeraxis = -1;
+                    steeraxis = 1;
                     break;
                 case SDLK_d:
-                    steeraxis = 1;
+                    steeraxis = -1;
                     break;
                 case SDLK_z:
                     is_accelerating = true;

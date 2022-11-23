@@ -11,7 +11,7 @@ class Car{
 private:
     static const int v_max = 1;
     const double acceleration = 0.1;
-    const double turnrate = 0.1;
+    const double turnrate = 0.03;
     glm::dvec2 pos;
     glm::dvec2 rot; // Vector of rotation
     double front_vel;
