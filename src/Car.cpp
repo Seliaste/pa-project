@@ -5,7 +5,9 @@
 #include "Car.h"
 #include <cmath>
 #include <glm/vec2.hpp>
+#include <glm/common.hpp>
 #include <glm/gtx/rotate_vector.hpp>
+#include <glm/gtx/vector_angle.hpp>
 
 
 Car::Car(int x, int y){
@@ -50,5 +52,9 @@ double Car::get_pos_x() const{
 
 double Car::get_pos_y() const{
     return this->pos.y;
+}
+
+double Car::get_rotation_degrees() const {
+    return glm::degrees(glm::orientedAngle(rot,glm::dvec2(1,0)));
 }
 

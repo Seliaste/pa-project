@@ -54,6 +54,6 @@ void GraphicsManager::display_images(GameWorld* world){
     DestR.w = size.x;
     DestR.h = size.y;
     SDL_RenderCopy(renderer, background, nullptr, nullptr);
-    SDL_RenderCopy(renderer, truck, &SrcR , &DestR);
+    SDL_RenderCopyEx(renderer, truck, &SrcR , &DestR,world->getPlayerCar()->get_rotation_degrees(), nullptr, SDL_FLIP_NONE);
     SDL_RenderPresent(renderer);
 }

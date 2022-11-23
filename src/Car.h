@@ -9,7 +9,7 @@
 
 class Car{
 private:
-    static const int v_max = 1;
+    constexpr static const double v_max = 1;
     const double acceleration = 0.1;
     const double turnrate = 0.03;
     glm::dvec2 pos;
@@ -46,5 +46,7 @@ public:
     double get_pos_x() const;
 
     double get_pos_y() const;
+
+    double get_rotation_degrees() const;
 };
 #endif //PA_PROJECT_CAR_H

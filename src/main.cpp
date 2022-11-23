@@ -41,11 +41,11 @@ int main(int argc, char const *argv[])
     // Boucle principale
     while (!events->get_is_quitting())
     {
-        // tmp = SDL_GetTicks();
+        tmp = SDL_GetTicks();
         events->poll_events();
         world->update_world(events);
         graphics->display_images(world);
-        // SDL_Delay(0.17 - (SDL_GetTicks() - tmp) ); - not working yet
+        SDL_Delay( 17 - (SDL_GetTicks() - tmp) );
     }
     // clean des données
     graphics->clean_graphics();
