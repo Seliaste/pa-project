@@ -35,7 +35,7 @@ public:
      */
     void accelerate();
 
-    void brake();
+    void brake(double coeff);
 
     /**
      * @brief Updates the car rotation
@@ -48,5 +48,7 @@ public:
     double get_pos_y() const;
 
     double get_rotation_degrees() const;
+
+
 };
 #endif //PA_PROJECT_CAR_H

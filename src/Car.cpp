@@ -35,8 +35,8 @@ void Car::accelerate(){
     }
 }
 
-void Car::brake() {
-    curr_speed_x -= acceleration;
+void Car::brake(double coeff) {
+    curr_speed_x -= acceleration*coeff;
     if(curr_speed_x < 0){
         curr_speed_x = 0;
     }
