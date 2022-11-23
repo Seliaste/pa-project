@@ -1,16 +1,18 @@
 #include "GraphicsManager.h"
 
 
-GraphicsManager(SDL_Window* window ){
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    SDL_Texture* background = load_image("../resources/road.bmp");
+GraphicsManager::GraphicsManager(SDL_Window* window){
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    background = load_image("../resources/road.bmp");
+    truck = load_transparent_image("../resources/trashmaster.bmp",255,255,255);
 }
+
 void GraphicsManager::clean_graphics()
 {
     SDL_DestroyTexture(this->background);
     SDL_DestroyTexture(this->truck);
-
 }
+
 SDL_Texture* GraphicsManager::load_image (const char* nomfichier){
     SDL_Surface* surface = SDL_LoadBMP(nomfichier);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
@@ -26,8 +28,8 @@ SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint
 void GraphicsManager::load_from_file(const char* namefile, const char* image1, const char* image2, const char* image3){
     FILE* file = fopen(namefile,"r");
     char str[100] = "";
-    if(file!= NULL){
-        while(fgets(str,100,file)!= NULL){
+    if(file != nullptr){
+        while(fgets(str,100,file) != nullptr){
             for (int i=0; i < strlen(str); i++) {
                 if (strcmp(str, "X") == 0) {
                     printf("y a un X");
@@ -43,7 +45,7 @@ void GraphicsManager::display_images(GameWorld* world){
     SDL_Rect SrcR;
     SrcR.x = 0;
     SrcR.y = 0;
-    SDL_QueryTexture(truck,NULL,NULL,&size.x,&size.y);
+    SDL_QueryTexture(truck,nullptr,nullptr,&size.x,&size.y);
     SrcR.w = size.x;
     SrcR.h = size.y;
     SDL_Rect DestR;
@@ -51,6 +53,7 @@ void GraphicsManager::display_images(GameWorld* world){
     DestR.y = ceil(world->getPlayerCar()->get_pos_y());
     DestR.w = size.x;
     DestR.h = size.y;
-    SDL_RenderCopy(renderer, background, NULL, NULL);
+    SDL_RenderCopy(renderer, background, nullptr, nullptr);
     SDL_RenderCopy(renderer, truck, &SrcR , &DestR);
+    SDL_RenderPresent(renderer);
 }

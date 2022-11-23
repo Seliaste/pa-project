@@ -32,6 +32,8 @@ int main(int argc, char const *argv[])
         return EXIT_FAILURE;
     }
 
+    auto* graphics = new GraphicsManager(window);
+
     auto* events = new EventManager();
 
     auto* world = new GameWorld();// initialisation des données
@@ -39,15 +41,15 @@ int main(int argc, char const *argv[])
     // Boucle principale
     while (!events->get_is_quitting())
     {
-        load_from_file("../resources/track1.txt",renderer,"a.bmp","b.bmp","c.bmp");
-        tmp = SDL_GetTicks();
+        // tmp = SDL_GetTicks();
         events->poll_events();
         world->update_world(events);
-        display_images(renderer,world);
-        SDL_RenderPresent(renderer);
+        graphics->display_images(world);
         // SDL_Delay(0.17 - (SDL_GetTicks() - tmp) ); - not working yet
     }
     // clean des données
+    graphics->clean_graphics();
+    delete graphics;
     world->clear_game_data();
     delete world;
     delete events;

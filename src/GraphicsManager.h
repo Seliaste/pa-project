@@ -17,28 +17,30 @@ private:
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
     SDL_Texture* truck;
 
+public:
+    explicit GraphicsManager(SDL_Window* window);
+
     /**
- * @brief charge une image à partir d'un fichier
- *
- * @param nomfichier
- * @return SDL_Texture*
- */
+    * @brief charge une image à partir d'un fichier
+    *
+    * @param nomfichier
+    * @return SDL_Texture*
+    */
     SDL_Texture* load_image (const char* nomfichier);
-/**
- * @brief charge une image et rend le fond transparent à partir d'un fichier
- *
- * @param nomfichier
- * @param r
- * @param g
- * @param b
- * @return SDL_Texture*
- */
+
+    /**
+     * @brief charge une image et rend le fond transparent à partir d'un fichier
+     *
+     * @param nomfichier
+     * @param r
+     * @param g
+     * @param b
+     * @return SDL_Texture*
+     */
     SDL_Texture* load_transparent_image(const char* nomfichier,Uint8 r,Uint8 g,Uint8 b);
 
-public:
-    GraphicsManager();
 
-/**
+    /**
  * @brief efface les données graphiques
  *
  * @param resources
@@ -53,7 +55,7 @@ public:
  * @param image2
  * @param image3
  */
-    void load_from_file(const char* namefile,const char* image1, const char* image2, const char* image3);
+    static void load_from_file(const char* namefile,const char* image1, const char* image2, const char* image3);
 
 /**
  *@brief charge les images et les affiche
@@ -61,7 +63,7 @@ public:
  */
     void display_images(GameWorld* world);
 
-}
+};
 
 
 #endif
