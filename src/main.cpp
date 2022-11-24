@@ -9,8 +9,8 @@
 
 #include <iostream>
 #include <SDL2/SDL.h>
-#include "GameWorld.h"
-#include "GraphicsManager.h"
+#include "logic/GameWorld.h"
+#include "graphics/GraphicsManager.h"
 #include "EventManager.h"
 
 int main(int argc, char const *argv[])

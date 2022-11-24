@@ -9,7 +9,7 @@
 
 #include <SDL2/SDL.h>
 #include "Car.h"
-#include "EventManager.h"
+#include "../EventManager.h"
 #include "Timer.h"
 
 class GameWorld{

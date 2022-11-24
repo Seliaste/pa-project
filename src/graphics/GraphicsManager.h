@@ -8,7 +8,7 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#include "GameWorld.h"
+#include "../logic/GameWorld.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
