@@ -66,7 +66,7 @@ public:
  */
     void display_images(GameWorld* world);
 
-    void display_text(GameWorld *world);
+    void display_timer_text(GameWorld *world);
 
     void update_display(GameWorld *world);
 };

@@ -47,11 +47,11 @@ void GraphicsManager::load_from_file(const char* namefile, const char* image1, c
 
 void GraphicsManager::update_display(GameWorld* world){
     display_images(world);
-    display_text(world);
+    display_timer_text(world);
     SDL_RenderPresent(renderer);
 }
 
-void GraphicsManager::display_text(GameWorld* world){
+void GraphicsManager::display_timer_text(GameWorld* world){
     SDL_Color color = { 255, 255, 255 };
     char timer_string[20];
     world->get_lap_timer()->get_timer_string(timer_string);
