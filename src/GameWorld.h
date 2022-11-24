@@ -10,10 +10,12 @@
 #include <SDL2/SDL.h>
 #include "Car.h"
 #include "EventManager.h"
+#include "Timer.h"
 
 class GameWorld{
 private:
     Car* player;
+    Timer* lap_timer;
 public:
     GameWorld();
 
@@ -27,6 +29,8 @@ public:
      * @brief Clears memory for dynamic objects
      */
     void clear_game_data();
+
+    Timer* get_lap_timer();
 
     Car* getPlayerCar();
 };

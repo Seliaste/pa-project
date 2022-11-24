@@ -2,6 +2,7 @@
 
 GameWorld::GameWorld() {
     player = new Car(0,0);
+    lap_timer = new Timer();
 }
 
 void GameWorld::update_world(EventManager* events){
@@ -20,8 +21,13 @@ void GameWorld::update_world(EventManager* events){
 
 void GameWorld::clear_game_data(){
     delete player;
+    delete lap_timer;
 }
 
 Car *GameWorld::getPlayerCar() {
     return player;
+}
+
+Timer* GameWorld::get_lap_timer() {
+    return lap_timer;
 }

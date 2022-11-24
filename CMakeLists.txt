@@ -8,7 +8,7 @@ include_directories(PA-Project ${SDL2_INCLUDE_DIRS})
 
 
 
-add_executable(PA-Project src/main.cpp src/GameWorld.cpp src/GraphicsManager.cpp src/Car.cpp src/Car.h src/EventManager.cpp src/EventManager.h src/Trigger.cpp src/Trigger.h)
+add_executable(PA-Project src/main.cpp src/GameWorld.cpp src/GraphicsManager.cpp src/Car.cpp src/Car.h src/EventManager.cpp src/EventManager.h src/Trigger.cpp src/Trigger.h src/Timer.cpp src/Timer.h)
 
 
 target_link_libraries(PA-Project ${SDL2_LIBRARIES} SDL2_ttf)

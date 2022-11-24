@@ -53,10 +53,9 @@ void GraphicsManager::update_display(GameWorld* world){
 
 void GraphicsManager::display_text(GameWorld* world){
     SDL_Color color = { 255, 255, 255 };
-    int ticks = SDL_GetTicks();
-    char timing_string[20];
-    sprintf(timing_string, "%d:%d", ticks/1000,SDL_GetTicks()%1000/10);
-    SDL_Surface * surface = TTF_RenderText_Solid(timefont, timing_string, color);
+    char timer_string[20];
+    world->get_lap_timer()->get_timer_string(timer_string);
+    SDL_Surface * surface = TTF_RenderText_Solid(timefont, timer_string, color);
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dstrect = { 0, 0, 200, 60 };
     SDL_RenderCopy(renderer, texture, nullptr, &dstrect);
