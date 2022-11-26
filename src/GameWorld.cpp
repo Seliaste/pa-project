@@ -2,6 +2,7 @@
 
 GameWorld::GameWorld() {
     player = new Car(0,0);
+    track = new Track("Tsukubad","track1.txt");
 }
 
 void GameWorld::update_world(EventManager* events){

@@ -14,8 +14,8 @@
 
 - Opponents with collisions
 
-- Save best time for each track in a file
+- Save best time for each Track in a file
 
 - Ranking with a queue
 
-- Procedural track generation
+- Procedural Track generation

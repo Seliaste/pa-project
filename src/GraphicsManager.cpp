@@ -5,6 +5,7 @@ GraphicsManager::GraphicsManager(SDL_Window* window){
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     background = load_image("../resources/road.bmp");
     truck = load_transparent_image("../resources/trashmaster.bmp",255,255,255);
+    //tabBg = load_from_file("../resources/track1.txt");
 }
 
 void GraphicsManager::clean_graphics()
@@ -25,20 +26,24 @@ SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
         return texture;
 }
-void GraphicsManager::load_from_file(const char* namefile, const char* image1, const char* image2, const char* image3){
+void GraphicsManager::load_from_file(const char* namefile){
     FILE* file = fopen(namefile,"r");
     char str[100] = "";
+    char track[100] = "";
+    int lines = 0;
+    int columns = 0;
     if(file != nullptr){
         while(fgets(str,100,file) != nullptr){
             for (int i=0; i < strlen(str); i++) {
-                if (strcmp(str, "X") == 0) {
-                    printf("y a un X");
-                    //load_image(image1,renderer);
-                }
+                char c = fgetc(file);
+                track[i] = c;       //placer textures dans tab à 2 dimensions (avec switch) puis les rendercopy dans display_images
+                lines+=1;
             }
+            columns = strlen(str);
         }
     }
     fclose(file);
+
 }
 void GraphicsManager::display_images(GameWorld* world){
     SDL_Point size;

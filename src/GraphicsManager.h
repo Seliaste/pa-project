@@ -51,11 +51,8 @@ public:
 /**
  *
  * @param namefile
- * @param image1
- * @param image2
- * @param image3
  */
-    static void load_from_file(const char* namefile,const char* image1, const char* image2, const char* image3);
+    void load_from_file(const char* namefile);
 
 /**
  *@brief charge les images et les affiche

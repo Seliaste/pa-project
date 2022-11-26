@@ -8,12 +8,17 @@
 #define PA_PROJECT_GAME_WORLD_H
 
 #include <SDL2/SDL.h>
+#include <vector>
+#include <string>
 #include "Car.h"
+#include "Track.h"
 #include "EventManager.h"
 
 class GameWorld{
 private:
     Car* player;
+    Track* track;
+
 public:
     GameWorld();
 
