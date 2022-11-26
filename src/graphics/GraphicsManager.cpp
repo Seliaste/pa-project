@@ -4,9 +4,9 @@
 GraphicsManager::GraphicsManager(SDL_Window* window){
     TTF_Init();
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    background = load_image("../../resources/road.bmp");
-    truck = load_transparent_image("../../resources/trashmaster.bmp",255,255,255);
-    timefont = TTF_OpenFont("../../resources/fonts/ShareTechMono-Regular.ttf", 64);
+    background = load_image("../resources/road.bmp");
+    truck = load_transparent_image("../resources/trashmaster.bmp",255,255,255);
+    timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 64);
 }
 
 void GraphicsManager::clean_graphics()
@@ -78,5 +78,4 @@ void GraphicsManager::display_images(GameWorld* world){
     DestR.h = size.y;
     SDL_RenderCopy(renderer, background, nullptr, nullptr);
     SDL_RenderCopyEx(renderer, truck, &SrcR , &DestR,world->getPlayerCar()->get_rotation_degrees(), nullptr, SDL_FLIP_NONE);
-    SDL_RenderPresent(renderer);
 }
