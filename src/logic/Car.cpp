@@ -4,10 +4,10 @@
 
 #include "Car.h"
 #include <cmath>
-#include <glm/vec2.hpp>
-#include <glm/common.hpp>
-#include <glm/gtx/rotate_vector.hpp>
-#include <glm/gtx/vector_angle.hpp>
+#include "glm/vec2.hpp"
+#include "glm/common.hpp"
+#include "glm/gtx/rotate_vector.hpp"
+#include "glm/gtx/vector_angle.hpp"
 
 
 Car::Car(int x, int y){

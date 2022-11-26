@@ -6,10 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(SDL2 REQUIRED)
 include_directories(PA-Project ${SDL2_INCLUDE_DIRS})
 
-add_executable(PA-Project src/main.cpp src/GameWorld.cpp src/GraphicsManager.cpp src/Car.cpp src/Car.h src/EventManager.cpp src/EventManager.h src/Track.cpp src/Track.h)
+
+add_executable(PA-Project src/main.cpp src/logic/GameWorld.cpp src/graphics/GraphicsManager.cpp src/logic/Car.cpp src/logic/Car.h src/EventManager.cpp src/EventManager.h src/logic/Trigger.cpp src/logic/Trigger.h src/logic/Timer.cpp src/logic/Timer.h src/Track.cpp src/Track.h)
 
 
-target_link_libraries(PA-Project ${SDL2_LIBRARIES})
+target_link_libraries(PA-Project ${SDL2_LIBRARIES} SDL2_ttf)
 
 add_subdirectory(lib/glm)
 target_link_libraries(PA-Project glm::glm)

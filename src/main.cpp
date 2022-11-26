@@ -9,8 +9,8 @@
 
 #include <iostream>
 #include <SDL2/SDL.h>
-#include "GameWorld.h"
-#include "GraphicsManager.h"
+#include "logic/GameWorld.h"
+#include "graphics/GraphicsManager.h"
 #include "EventManager.h"
 
 int main(int argc, char const *argv[])
@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
         tmp = SDL_GetTicks();
         events->poll_events();
         world->update_world(events);
-        graphics->display_images(world);
+        graphics->update_display(world);
         SDL_Delay( 17 - (SDL_GetTicks() - tmp) );
     }
     // clean des données

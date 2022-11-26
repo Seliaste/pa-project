@@ -2,16 +2,19 @@
 
 
 GraphicsManager::GraphicsManager(SDL_Window* window){
+    TTF_Init();
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     background = load_image("../resources/road.bmp");
     truck = load_transparent_image("../resources/trashmaster.bmp",255,255,255);
-    //tabBg = load_from_file("../resources/track1.txt");
+    timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 64);
 }
 
 void GraphicsManager::clean_graphics()
 {
     SDL_DestroyTexture(this->background);
     SDL_DestroyTexture(this->truck);
+    TTF_CloseFont(timefont);
+    TTF_Quit();
 }
 
 SDL_Texture* GraphicsManager::load_image (const char* nomfichier){
@@ -29,22 +32,37 @@ SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint
 void GraphicsManager::load_from_file(const char* namefile){
     FILE* file = fopen(namefile,"r");
     char str[100] = "";
-    char track[100] = "";
-    int lines = 0;
-    int columns = 0;
     if(file != nullptr){
         while(fgets(str,100,file) != nullptr){
             for (int i=0; i < strlen(str); i++) {
-                char c = fgetc(file);
-                track[i] = c;       //placer textures dans tab à 2 dimensions (avec switch) puis les rendercopy dans display_images
-                lines+=1;
+                if (strcmp(str, "X") == 0) {
+                    printf("y a un X");
+                    //load_image(image1,renderer);
+                }
             }
-            columns = strlen(str);
         }
     }
     fclose(file);
+}
+
+void GraphicsManager::update_display(GameWorld* world){
+    display_images(world);
+    display_timer_text(world);
+    SDL_RenderPresent(renderer);
+}
+
+void GraphicsManager::display_timer_text(GameWorld* world){
+    SDL_Color color = { 255, 255, 255 };
+    char timer_string[20];
+    world->get_lap_timer()->get_timer_string(timer_string);
+    SDL_Surface * surface = TTF_RenderText_Solid(timefont, timer_string, color);
+    SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_Rect dstrect = { 0, 0, 200, 60 };
+    SDL_RenderCopy(renderer, texture, nullptr, &dstrect);
+
 
 }
+
 void GraphicsManager::display_images(GameWorld* world){
     SDL_Point size;
     SDL_Rect SrcR;

@@ -8,14 +8,17 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#include "GameWorld.h"
+#include "../logic/GameWorld.h"
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 class GraphicsManager{
 private:
     SDL_Renderer* renderer;
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
     SDL_Texture* truck;
+    TTF_Font* timefont;
+
 
 public:
     explicit GraphicsManager(SDL_Window* window);
@@ -60,6 +63,9 @@ public:
  */
     void display_images(GameWorld* world);
 
+    void display_timer_text(GameWorld *world);
+
+    void update_display(GameWorld *world);
 };
 
 

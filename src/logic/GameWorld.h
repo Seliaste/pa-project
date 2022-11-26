@@ -11,12 +11,14 @@
 #include <vector>
 #include <string>
 #include "Car.h"
+#include "../EventManager.h"
+#include "Timer.h"
 #include "Track.h"
-#include "EventManager.h"
 
 class GameWorld{
 private:
     Car* player;
+    Timer* lap_timer;
     Track* track;
 
 public:
@@ -33,7 +35,11 @@ public:
      */
     void clear_game_data();
 
+    Timer* get_lap_timer();
+
     Car* getPlayerCar();
+
+    Track* getTrack();
 };
 
 #endif

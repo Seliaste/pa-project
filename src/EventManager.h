@@ -29,16 +29,16 @@ public:
      *
      * @return true if the acceleration event is happening
      */
-    bool get_is_accelerating();
+    bool get_is_accelerating() const;
 
-    bool get_is_braking();
+    bool get_is_braking() const;
 
     /**
      * @brief Has a quitting event been received
      *
      * @return true if the quitting should happen
      */
-    bool get_is_quitting();
+    bool get_is_quitting() const;
 
     int get_steering_axis();
 };
