@@ -50,20 +50,13 @@ public:
  */
     void clean_graphics();
 
-
-/**
- *
- * @param namefile
- */
-    void load_from_file(const char* namefile);
-
 /**
  *@brief charge les images et les affiche
  * @return void
  */
-    void display_images(GameWorld* world);
+    void add_images_to_renderer(GameWorld* world);
 
-    void display_timer_text(GameWorld *world);
+    void add_timer_text_to_renderer(GameWorld *world);
 
     void update_display(GameWorld *world);
 };

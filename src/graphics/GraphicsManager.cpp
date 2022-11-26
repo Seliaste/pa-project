@@ -29,29 +29,14 @@ SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
         return texture;
 }
-void GraphicsManager::load_from_file(const char* namefile){
-    FILE* file = fopen(namefile,"r");
-    char str[100] = "";
-    if(file != nullptr){
-        while(fgets(str,100,file) != nullptr){
-            for (int i=0; i < strlen(str); i++) {
-                if (strcmp(str, "X") == 0) {
-                    printf("y a un X");
-                    //load_image(image1,renderer);
-                }
-            }
-        }
-    }
-    fclose(file);
-}
 
 void GraphicsManager::update_display(GameWorld* world){
-    display_images(world);
-    display_timer_text(world);
+    add_images_to_renderer(world);
+    add_timer_text_to_renderer(world);
     SDL_RenderPresent(renderer);
 }
 
-void GraphicsManager::display_timer_text(GameWorld* world){
+void GraphicsManager::add_timer_text_to_renderer(GameWorld* world){
     SDL_Color color = { 255, 255, 255 };
     char timer_string[20];
     world->get_lap_timer()->get_timer_string(timer_string);
@@ -63,7 +48,7 @@ void GraphicsManager::display_timer_text(GameWorld* world){
 
 }
 
-void GraphicsManager::display_images(GameWorld* world){
+void GraphicsManager::add_images_to_renderer(GameWorld* world){
     SDL_Point size;
     SDL_Rect SrcR;
     SrcR.x = 0;
