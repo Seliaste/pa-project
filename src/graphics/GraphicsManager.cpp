@@ -59,8 +59,8 @@ void GraphicsManager::add_images_to_renderer(GameWorld* world){
     SDL_Rect DestR;
     DestR.x = ceil(-world->getPlayerCar()->get_pos_x());
     DestR.y = ceil(world->getPlayerCar()->get_pos_y());
-    DestR.w = size.x;
-    DestR.h = size.y;
+    DestR.w = ceil(size.x/1.5);
+    DestR.h = ceil(size.y/1.5);
     SDL_RenderCopy(renderer, background, nullptr, nullptr);
     SDL_RenderCopyEx(renderer, truck, &SrcR , &DestR,world->getPlayerCar()->get_rotation_degrees(), nullptr, SDL_FLIP_NONE);
 }
