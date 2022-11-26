@@ -39,7 +39,7 @@ public:
 
     Car* getPlayerCar();
 
-    Track* getTrack();
+    Track* get_track();
 };
 
 #endif

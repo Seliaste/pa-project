@@ -4,9 +4,9 @@
 GraphicsManager::GraphicsManager(SDL_Window* window){
     TTF_Init();
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    background = load_image("../resources/road.bmp");
-    truck = load_transparent_image("../resources/trashmaster.bmp",255,255,255);
-    timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 64);
+    background = load_image("../../resources/road.bmp");
+    truck = load_transparent_image("../../resources/trashmaster.bmp",255,255,255);
+    timefont = TTF_OpenFont("../../resources/fonts/ShareTechMono-Regular.ttf", 64);
 }
 
 void GraphicsManager::clean_graphics()
