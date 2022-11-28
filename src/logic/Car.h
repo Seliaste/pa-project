@@ -9,8 +9,8 @@
 
 class Car{
 private:
-    constexpr static const double v_max = 1;
-    const double acceleration = 0.1;
+    constexpr static const double v_max = 2;
+    const double acceleration = 0.025;
     const double turnrate = 0.03;
     glm::dvec2 pos;
     glm::dvec2 rot; // Vector of rotation
