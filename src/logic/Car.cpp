@@ -17,11 +17,15 @@ Car::Car(int x, int y){
     curr_speed_x = 0;
     front_vel = 0;
     rot = glm::vec2(1,0);
+    slowed = false;
 }
 
 void Car::compute_car_position(){
-    front_vel = speed_function(curr_speed_x);
+    front_vel = speed_function(curr_speed_x)/(slowed?2:1);
     pos += rot*front_vel;
+    if(slowed){
+        slowed = false;
+    }
 }
 
 double Car::speed_function(double x){
@@ -58,8 +62,12 @@ double Car::get_rotation_degrees() const {
     return glm::degrees(glm::orientedAngle(rot,glm::dvec2(1,0)));
 }
 
-char Car::get_tile_under_car(Track track) const {
-    int tilesize = track.get_tile_size();
-    return track.get_tile_type(floor(pos.x/tilesize), floor(pos.y/tilesize));
+char Car::get_tile_under_car(Track* track) const {
+    int tilesize = track->get_tile_size();
+    return track->get_tile_type(floor(-pos.x/tilesize), floor(pos.y/tilesize));
+}
+
+void Car::apply_slowdown() {
+    slowed = true;
 }
 

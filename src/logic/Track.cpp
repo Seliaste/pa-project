@@ -58,5 +58,8 @@ int Track::get_tile_size() const{
 }
 
 char Track::get_tile_type(int x, int y) {
-    return track_array[y][x];
+    if(y >= 0 && y<track_array.size() && x >= 0 && x < track_array[y].size()){
+        return track_array[y][x];
+    }
+    return 'o';
 }

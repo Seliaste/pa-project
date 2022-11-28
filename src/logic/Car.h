@@ -10,7 +10,8 @@
 
 class Car{
 private:
-    constexpr static const double v_max = 2;
+    constexpr static double v_max = 2;
+    bool slowed;
     const double acceleration = 0.025;
     const double turnrate = 0.03;
     glm::dvec2 pos;
@@ -50,6 +51,8 @@ public:
 
     double get_rotation_degrees() const;
 
-    char get_tile_under_car(Track track) const;
+    void apply_slowdown();
+
+    char get_tile_under_car(Track* track) const;
 };
 #endif //PA_PROJECT_CAR_H
