@@ -2,7 +2,7 @@
 
 GameWorld::GameWorld() {
     player = new Car(0,0);
-    track = new Track("Tsukubad","track1.txt");
+    track = new Track("Tsukubad","../resources/track1.txt");
     lap_timer = new Timer();
 }
 

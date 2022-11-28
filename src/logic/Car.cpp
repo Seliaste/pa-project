@@ -58,3 +58,8 @@ double Car::get_rotation_degrees() const {
     return glm::degrees(glm::orientedAngle(rot,glm::dvec2(1,0)));
 }
 
+char Car::get_tile_under_car(Track track) const {
+    int tilesize = track.get_tile_size();
+    return track.get_tile_type(floor(pos.x/tilesize), floor(pos.y/tilesize));
+}
+

@@ -8,16 +8,17 @@
 #include <fstream>
 #include "Track.h"
 
-Track::Track(std::string title, std::string file){
+Track::Track(std::string title, const std::string& file){
     name = title;
-    file_name = file;
+    tile_size = 32;
+    fill_tab(file);
 }
 
-std::vector<std::vector<char>> Track::fill_tab() const{
+void Track::fill_tab(const std::string& file_name){
     std::string line;
     char word;
 
-    std::ifstream inFile(this->file_name);
+    std::ifstream inFile(file_name);
 
     std::vector<std::vector<char>> tab_track;
 
@@ -42,8 +43,20 @@ std::vector<std::vector<char>> Track::fill_tab() const{
     }
     else
     {
-        std::cout<<"file cannot be opened"<<std::endl;
+        throw std::invalid_argument("Track file name does not correspond to an actual file");
     }
     inFile.close();
-    return tab_track;
+    this->track_array = tab_track;
+}
+
+glm::vec2 Track::get_size() {
+    return {track_array[0].size(),track_array.size()};
+}
+
+int Track::get_tile_size() const{
+    return tile_size;
+}
+
+char Track::get_tile_type(int x, int y) {
+    return track_array[y][x];
 }

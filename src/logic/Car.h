@@ -6,6 +6,7 @@
 #define PA_PROJECT_CAR_H
 
 #include "glm/vec2.hpp"
+#include "Track.h"
 
 class Car{
 private:
@@ -49,6 +50,6 @@ public:
 
     double get_rotation_degrees() const;
 
-
+    char get_tile_under_car(Track track) const;
 };
 #endif //PA_PROJECT_CAR_H
