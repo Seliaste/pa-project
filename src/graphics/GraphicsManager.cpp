@@ -34,6 +34,7 @@ SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint
 }
 
 void GraphicsManager::update_display(GameWorld* world){
+    SDL_RenderClear(renderer);
     render_track(world);
     add_images_to_renderer(world);
     add_timer_text_to_renderer(world);
