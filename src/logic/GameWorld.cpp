@@ -83,7 +83,5 @@ void GameWorld::try_validating_lap() {
         validated[0] = false;
         validated[1] = false;
         validated[2] = false;
-
     }
-    std::cout << validated[0] << validated[1] << validated[2] << std::endl;
 }
