@@ -12,6 +12,7 @@
 #include "logic/GameWorld.h"
 #include "graphics/GraphicsManager.h"
 #include "EventManager.h"
+#include "menu/Menu.h"
 
 int main(int argc, char const *argv[])
 {
@@ -31,6 +32,10 @@ int main(int argc, char const *argv[])
         SDL_Quit();
         return EXIT_FAILURE;
     }
+
+    auto* menu = new Menu();
+
+    menu->display_main_menu(window);
 
     auto* graphics = new GraphicsManager(window);
 
