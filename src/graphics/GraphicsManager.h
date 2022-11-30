@@ -16,7 +16,7 @@ class GraphicsManager{
 private:
     SDL_Renderer* renderer;
     SDL_Texture* bgtextroad; /*!< Textures liées à l'image du fond de l'écran. */
-    SDL_Texture* bgtextdirt;
+    SDL_Texture* bgtextgrass;
     SDL_Texture* truck;
     TTF_Font* timefont;
 
