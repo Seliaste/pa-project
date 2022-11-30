@@ -5,7 +5,7 @@ GraphicsManager::GraphicsManager(SDL_Window* window){
     TTF_Init();
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     bgtextroad = load_image("../resources/road.bmp");
-    bgtextdirt = load_image("../resources/dirt.bmp");
+    bgtextgrass = load_image("../resources/grass.bmp");
     truck = load_transparent_image("../resources/trashmaster.bmp",255,255,255);
     timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 64);
 
@@ -14,7 +14,7 @@ GraphicsManager::GraphicsManager(SDL_Window* window){
 void GraphicsManager::clean_graphics()
 {
     SDL_DestroyTexture(this->bgtextroad);
-    SDL_DestroyTexture(this->bgtextdirt);
+    SDL_DestroyTexture(this->bgtextgrass);
     SDL_DestroyTexture(this->truck);
     TTF_CloseFont(timefont);
     TTF_Quit();
@@ -75,7 +75,7 @@ void GraphicsManager::render_track(GameWorld* world) {
     SrcR.x = 0;
     SrcR.y = 0;
     SDL_QueryTexture(bgtextroad, nullptr, nullptr, &size1.x, &size1.y);
-    SDL_QueryTexture(bgtextdirt, nullptr, nullptr, &size2.x, &size2.y);
+    SDL_QueryTexture(bgtextgrass, nullptr, nullptr, &size2.x, &size2.y);
     SrcR.w = size1.x;
     SrcR.h = size1.y;
     SDL_Rect DestR;
@@ -86,7 +86,7 @@ void GraphicsManager::render_track(GameWorld* world) {
     for (int row = 0; row < size.y; row++) {
         for (int col = 0; col<size.x; col++) {
             if (track->get_tile_type(col,row) == 'o') {
-                texture = bgtextdirt;
+                texture = bgtextgrass;
             }
             else {
                 texture = bgtextroad;
