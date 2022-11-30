@@ -28,7 +28,7 @@ public:
      */
      void fill_tab(const std::string& file_name);
 
-     glm::vec2 get_size();
+     glm::ivec2 get_size();
 
      char get_tile_type(int x, int y);
 

@@ -29,7 +29,7 @@ void Car::compute_car_position(){
 }
 
 double Car::speed_function(double x){
-    return (1 - exp(v_max*x));
+    return -(1 - exp(v_max*x));
 }
 
 void Car::accelerate(){
@@ -59,12 +59,12 @@ double Car::get_pos_y() const{
 }
 
 double Car::get_rotation_degrees() const {
-    return glm::degrees(glm::orientedAngle(rot,glm::dvec2(1,0)));
+    return -glm::degrees(glm::orientedAngle(rot,glm::dvec2(1,0)));
 }
 
 char Car::get_tile_under_car(Track* track) const {
     int tilesize = track->get_tile_size();
-    return track->get_tile_type(floor(-pos.x/tilesize), floor(pos.y/tilesize));
+    return track->get_tile_type(floor(pos.x/tilesize), floor(pos.y/tilesize));
 }
 
 void Car::apply_slowdown() {

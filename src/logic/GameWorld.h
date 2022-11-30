@@ -14,12 +14,15 @@
 #include "../EventManager.h"
 #include "Timer.h"
 #include "Track.h"
+#include "Trigger.h"
 
 class GameWorld{
 private:
     Car* player;
     Timer* lap_timer;
     Track* track;
+    Trigger* checkpoints[3]{nullptr, nullptr, nullptr};
+    bool validated[3]{false,false,false};
 
 public:
     GameWorld();
@@ -40,6 +43,12 @@ public:
     Car* getPlayerCar();
 
     Track* get_track();
+
+    void init_checkpoints();
+
+    void compute_checkpoint_updates();
+
+    void validate_lap();
 };
 
 #endif

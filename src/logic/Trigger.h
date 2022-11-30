@@ -8,7 +8,7 @@
 #include "Car.h"
 
 /**
- * A trigger will be a class used by the start/finish line and checkpoint to be sure the player has made a valid lap
+ * A trigger will be a class used by the start/finish line and checkpoints to be sure the player has made a valid lap
  */
 class Trigger {
 private:

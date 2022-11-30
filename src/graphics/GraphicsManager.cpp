@@ -57,7 +57,7 @@ void GraphicsManager::add_images_to_renderer(GameWorld* world){
     SrcR.w = size.x;
     SrcR.h = size.y;
     SDL_Rect DestR;
-    DestR.x = ceil(-world->getPlayerCar()->get_pos_x());
+    DestR.x = ceil(world->getPlayerCar()->get_pos_x());
     DestR.y = ceil(world->getPlayerCar()->get_pos_y());
     DestR.w = ceil(size.x/1.5);
     DestR.h = ceil(size.y/1.5);

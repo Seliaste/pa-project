@@ -14,8 +14,8 @@ private:
     bool slowed;
     const double acceleration = 0.025;
     const double turnrate = 0.03;
-    glm::dvec2 pos;
-    glm::dvec2 rot; // Vector of rotation
+    glm::dvec2 pos{};
+    glm::dvec2 rot{}; // Vector of rotation
     double front_vel;
     double curr_speed_x; // for speed_function calculation
     static double speed_function(double x);

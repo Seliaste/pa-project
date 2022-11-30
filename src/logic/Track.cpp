@@ -10,7 +10,7 @@
 
 Track::Track(std::string title, const std::string& file){
     name = title;
-    tile_size = 32;
+    tile_size = 64;
     fill_tab(file);
 }
 
@@ -49,7 +49,7 @@ void Track::fill_tab(const std::string& file_name){
     this->track_array = tab_track;
 }
 
-glm::vec2 Track::get_size() {
+glm::ivec2 Track::get_size() {
     return {track_array[0].size(),track_array.size()};
 }
 
