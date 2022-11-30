@@ -21,6 +21,7 @@ private:
     Car* player;
     Timer* lap_timer;
     Track* track;
+    Trigger* startline;
     Trigger* checkpoints[3]{nullptr, nullptr, nullptr};
     bool validated[3]{false,false,false};
 
@@ -48,7 +49,7 @@ public:
 
     void compute_checkpoint_updates();
 
-    void validate_lap();
+    void try_validating_lap();
 };
 
 #endif
