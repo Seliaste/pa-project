@@ -1,17 +1,20 @@
 #include "GraphicsManager.h"
-
-
+#include <vector>
+#include <iostream>
 GraphicsManager::GraphicsManager(SDL_Window* window){
     TTF_Init();
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    background = load_image("../resources/road.bmp");
+    bgtextroad = load_image("../resources/road.bmp");
+    bgtextdirt = load_image("../resources/dirt.bmp");
     truck = load_transparent_image("../resources/trashmaster.bmp",255,255,255);
     timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 64);
+
 }
 
 void GraphicsManager::clean_graphics()
 {
-    SDL_DestroyTexture(this->background);
+    SDL_DestroyTexture(this->bgtextroad);
+    SDL_DestroyTexture(this->bgtextdirt);
     SDL_DestroyTexture(this->truck);
     TTF_CloseFont(timefont);
     TTF_Quit();
@@ -31,6 +34,7 @@ SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint
 }
 
 void GraphicsManager::update_display(GameWorld* world){
+    render_track(world);
     add_images_to_renderer(world);
     add_timer_text_to_renderer(world);
     SDL_RenderPresent(renderer);
@@ -61,6 +65,38 @@ void GraphicsManager::add_images_to_renderer(GameWorld* world){
     DestR.y = ceil(world->getPlayerCar()->get_pos_y());
     DestR.w = ceil(size.x/1.5);
     DestR.h = ceil(size.y/1.5);
-    SDL_RenderCopy(renderer, background, nullptr, nullptr);
+    //SDL_RenderCopy(renderer, background, nullptr, nullptr);
     SDL_RenderCopyEx(renderer, truck, &SrcR , &DestR,world->getPlayerCar()->get_rotation_degrees(), nullptr, SDL_FLIP_NONE);
+}
+void GraphicsManager::render_track(GameWorld* world) {
+    SDL_Point size1;
+    SDL_Point size2;
+    SDL_Rect SrcR;
+    SrcR.x = 0;
+    SrcR.y = 0;
+    SDL_QueryTexture(bgtextroad, nullptr, nullptr, &size1.x, &size1.y);
+    SDL_QueryTexture(bgtextdirt, nullptr, nullptr, &size2.x, &size2.y);
+    SrcR.w = size1.x;
+    SrcR.h = size1.y;
+    SDL_Rect DestR;
+    Track* track = world->get_track();
+    SDL_Texture* texture;
+    glm::ivec2 size = track->get_size();
+    int tile_size = track->get_tile_size();
+    for (int row = 0; row < size.y; row++) {
+        for (int col = 0; col<size.x; col++) {
+            if (track->get_tile_type(col,row) == 'o') {
+                texture = bgtextdirt;
+            }
+            else {
+                texture = bgtextroad;
+            }
+                DestR.x = col * tile_size;
+                DestR.y = row * tile_size;
+                DestR.w = tile_size;
+                DestR.h = tile_size;
+                SDL_RenderCopy(renderer, texture, &SrcR, &DestR);
+
+        }
+    }
 }

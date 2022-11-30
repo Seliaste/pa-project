@@ -15,7 +15,8 @@
 class GraphicsManager{
 private:
     SDL_Renderer* renderer;
-    SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
+    SDL_Texture* bgtextroad; /*!< Textures liées à l'image du fond de l'écran. */
+    SDL_Texture* bgtextdirt;
     SDL_Texture* truck;
     TTF_Font* timefont;
 
@@ -59,6 +60,11 @@ public:
     void add_timer_text_to_renderer(GameWorld *world);
 
     void update_display(GameWorld *world);
+    /**
+     * Affiche les textures selon le fichier track
+     * @param world
+     */
+    void render_track(GameWorld* world);
 };
 
 
