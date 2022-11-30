@@ -33,6 +33,8 @@ public:
      char get_tile_type(int x, int y);
 
      int get_tile_size() const;
+
+     glm::ivec2 get_start_position();
 };
 
 

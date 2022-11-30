@@ -63,3 +63,14 @@ char Track::get_tile_type(int x, int y) {
     }
     return 'o';
 }
+
+glm::ivec2 Track::get_start_position() {
+    for(int y = 0; y < track_array.size(); y++){
+        for(int x = 0; x < track_array[y].size(); x++){
+            if(track_array[y][x] == 's'){
+                return {x*tile_size,y*tile_size};
+            }
+        }
+    }
+    return {0,0};
+}

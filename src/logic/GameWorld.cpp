@@ -2,8 +2,9 @@
 #include <iostream>
 
 GameWorld::GameWorld() {
-    player = new Car(0,0);
     track = new Track("Tsukubad","../resources/track1.txt");
+    glm::ivec2 startpos = track->get_start_position();
+    player = new Car(startpos.x,startpos.y);
     lap_timer = new Timer();
     init_checkpoints();
 }
