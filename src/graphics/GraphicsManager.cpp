@@ -3,7 +3,6 @@
 #include <iostream>
 #include <SDL_image.h>
 GraphicsManager::GraphicsManager(SDL_Window* window){
-    TTF_Init();
     IMG_Init(IMG_INIT_PNG);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     bgtextroad = load_image("../resources/road.bmp");
@@ -20,7 +19,6 @@ void GraphicsManager::clean_graphics()
     SDL_DestroyTexture(this->car);
     TTF_CloseFont(timefont);
     SDL_DestroyRenderer(this->renderer);
-    TTF_Quit();
 }
 
 SDL_Texture* GraphicsManager::load_image (const char* nomfichier){

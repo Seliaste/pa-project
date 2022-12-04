@@ -32,10 +32,10 @@ int main(int argc, char const *argv[])
         SDL_Quit();
         return EXIT_FAILURE;
     }
-
+    TTF_Init();
     auto* menu = new Menu();
 
-    menu->display_main_menu(window);
+    // menu->display_main_menu(window);
 
     auto* graphics = new GraphicsManager(window);
 
@@ -60,6 +60,7 @@ int main(int argc, char const *argv[])
     delete events;
     delete menu;
     // Quitter SDL
+    TTF_Quit();
     SDL_DestroyWindow(window);
     SDL_Quit();
     return 0;
