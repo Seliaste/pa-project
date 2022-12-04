@@ -19,12 +19,14 @@ void GraphicsManager::clean_graphics()
     SDL_DestroyTexture(this->bgtextgrass);
     SDL_DestroyTexture(this->car);
     TTF_CloseFont(timefont);
+    SDL_DestroyRenderer(this->renderer);
     TTF_Quit();
 }
 
 SDL_Texture* GraphicsManager::load_image (const char* nomfichier){
     SDL_Surface* surface = SDL_LoadBMP(nomfichier);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
+    SDL_FreeSurface(surface);
     return texture;
 }
 SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint8 r,Uint8 g,Uint8 b){
@@ -32,6 +34,7 @@ SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint
         Uint32 code = SDL_MapRGB(surface->format,r,g,b);
         SDL_SetColorKey(surface,SDL_TRUE,code);
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
+        SDL_FreeSurface(surface);
         return texture;
 }
 
@@ -42,6 +45,7 @@ SDL_Texture* GraphicsManager::load_png (const char* nomfichier){
         printf( "Unable to load image %s! SDL_image Error: %s\n", nomfichier, IMG_GetError() );
     }
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
+    SDL_FreeSurface(surface);
     return texture;
 }
 

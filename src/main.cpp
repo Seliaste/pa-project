@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
     auto* world = new GameWorld();// initialisation des données
     Uint64 tmp;
     // Boucle principale
-    while (!events->get_is_quitting())
+    while (!events->get_is_quitting() && false)
     {
         tmp = SDL_GetTicks();
         events->poll_events();
@@ -58,6 +58,7 @@ int main(int argc, char const *argv[])
     world->clear_game_data();
     delete world;
     delete events;
+    delete menu;
     // Quitter SDL
     SDL_DestroyWindow(window);
     SDL_Quit();
