@@ -1,12 +1,14 @@
 #include "GraphicsManager.h"
 #include <vector>
 #include <iostream>
+#include <SDL_image.h>
 GraphicsManager::GraphicsManager(SDL_Window* window){
     TTF_Init();
+    IMG_Init(IMG_INIT_PNG);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     bgtextroad = load_image("../resources/road.bmp");
     bgtextgrass = load_image("../resources/grass.bmp");
-    truck = load_transparent_image("../resources/trashmaster.bmp",255,255,255);
+    car = load_png("../resources/pitstop_car_10.png");
     timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 64);
 
 }
@@ -15,7 +17,7 @@ void GraphicsManager::clean_graphics()
 {
     SDL_DestroyTexture(this->bgtextroad);
     SDL_DestroyTexture(this->bgtextgrass);
-    SDL_DestroyTexture(this->truck);
+    SDL_DestroyTexture(this->car);
     TTF_CloseFont(timefont);
     TTF_Quit();
 }
@@ -31,6 +33,16 @@ SDL_Texture* GraphicsManager::load_transparent_image(const char* nomfichier,Uint
         SDL_SetColorKey(surface,SDL_TRUE,code);
         SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
         return texture;
+}
+
+SDL_Texture* GraphicsManager::load_png (const char* nomfichier){
+    SDL_Surface* surface = IMG_Load(nomfichier);
+    if(surface == NULL)
+    {
+        printf( "Unable to load image %s! SDL_image Error: %s\n", nomfichier, IMG_GetError() );
+    }
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer,surface);
+    return texture;
 }
 
 void GraphicsManager::update_display(GameWorld* world){
@@ -58,16 +70,16 @@ void GraphicsManager::add_images_to_renderer(GameWorld* world){
     SDL_Rect SrcR;
     SrcR.x = 0;
     SrcR.y = 0;
-    SDL_QueryTexture(truck,nullptr,nullptr,&size.x,&size.y);
+    SDL_QueryTexture(car, nullptr, nullptr, &size.x, &size.y);
     SrcR.w = size.x;
     SrcR.h = size.y;
     SDL_Rect DestR;
-    DestR.x = ceil(world->getPlayerCar()->get_pos_x());
-    DestR.y = ceil(world->getPlayerCar()->get_pos_y());
-    DestR.w = ceil(size.x/1.5);
-    DestR.h = ceil(size.y/1.5);
+    DestR.x = ceil(world->getPlayerCar()->get_pos_x()-floor(size.x/2));
+    DestR.y = ceil(world->getPlayerCar()->get_pos_y()-floor(size.y/2));
+    DestR.w = ceil(size.x);
+    DestR.h = ceil(size.y);
     //SDL_RenderCopy(renderer, background, nullptr, nullptr);
-    SDL_RenderCopyEx(renderer, truck, &SrcR , &DestR,world->getPlayerCar()->get_rotation_degrees(), nullptr, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(renderer, car, &SrcR , &DestR, world->getPlayerCar()->get_rotation_degrees(), nullptr, SDL_FLIP_NONE);
 }
 void GraphicsManager::render_track(GameWorld* world) {
     SDL_Point size1;

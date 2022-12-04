@@ -17,7 +17,7 @@ private:
     SDL_Renderer* renderer;
     SDL_Texture* bgtextroad; /*!< Textures liées à l'image du fond de l'écran. */
     SDL_Texture* bgtextgrass;
-    SDL_Texture* truck;
+    SDL_Texture* car;
     TTF_Font* timefont;
 
 
@@ -65,6 +65,8 @@ public:
      * @param world
      */
     void render_track(GameWorld* world);
+
+    SDL_Texture *load_png(const char *nomfichier);
 };
 
 
