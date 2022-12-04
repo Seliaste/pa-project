@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
     auto* world = new GameWorld();// initialisation des données
     Uint64 tmp;
     // Boucle principale
-    while (!events->get_is_quitting() && false)
+    while (!events->get_is_quitting())
     {
         tmp = SDL_GetTicks();
         events->poll_events();
