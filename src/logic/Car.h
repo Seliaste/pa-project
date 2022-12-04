@@ -10,11 +10,11 @@
 
 class Car{
 private:
-    constexpr static double v_max = 2;
+    constexpr static double v_max = 1.5;
     bool slowed;
     const double acceleration = 0.025;
     const double turnrate = 0.03;
-    glm::dvec2 pos{};
+    glm::dvec2 pos{}; // vector of center
     glm::dvec2 rot{}; // Vector of rotation
     double front_vel;
     double curr_speed_x; // for speed_function calculation

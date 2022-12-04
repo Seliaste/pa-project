@@ -16,7 +16,7 @@ Car::Car(int x, int y){
     pos.y = (double) y;
     curr_speed_x = 0;
     front_vel = 0;
-    rot = glm::vec2(1,0);
+    rot = glm::vec2(-1,0);
     slowed = false;
 }
 

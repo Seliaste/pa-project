@@ -10,7 +10,7 @@
 
 Track::Track(std::string title, const std::string& file){
     name = title;
-    tile_size = 64;
+    tile_size = 100;
     fill_tab(file);
 }
 

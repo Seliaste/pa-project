@@ -6,7 +6,7 @@ GameWorld::GameWorld() {
     glm::ivec2 startpos = track->get_start_position();
     int tile_size = track->get_tile_size();
     startline = new Trigger(startpos.x,startpos.y,tile_size,tile_size);
-    player = new Car(startpos.x,startpos.y);
+    player = new Car(startpos.x+tile_size/2,startpos.y+tile_size/2);
     lap_timer = new Timer();
     init_checkpoints();
 }
@@ -83,5 +83,6 @@ void GameWorld::try_validating_lap() {
         validated[0] = false;
         validated[1] = false;
         validated[2] = false;
+
     }
 }
