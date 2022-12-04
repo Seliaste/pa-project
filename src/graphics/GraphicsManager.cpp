@@ -59,9 +59,10 @@ void GraphicsManager::add_timer_text_to_renderer(GameWorld* world){
     world->get_lap_timer()->get_timer_string(timer_string);
     SDL_Surface * surface = TTF_RenderText_Solid(timefont, timer_string, color);
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_Rect dstrect = { 0, 0, 200, 60 };
+    SDL_Rect dstrect = { 0, 0, surface->w, surface->h };
     SDL_RenderCopy(renderer, texture, nullptr, &dstrect);
-
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(surface);
 
 }
 
