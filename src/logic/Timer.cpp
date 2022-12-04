@@ -18,5 +18,5 @@ Uint32 Timer::get_current_time() const {
 
 void Timer::get_timer_string(char* str) const {
     Uint32 time = get_current_time();
-    sprintf(str, "%u:%u", time/1000,time%1000/10);
+    sprintf(str, "%u:%02u", time/1000,time%1000/10);
 }
