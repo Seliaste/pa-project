@@ -43,6 +43,7 @@ int main(int argc, char const *argv[])
 
     auto* world = new GameWorld();// initialisation des données
     Uint64 tmp;
+    Uint64 toWait;
     // Boucle principale
     while (!events->get_is_quitting())
     {
@@ -50,7 +51,8 @@ int main(int argc, char const *argv[])
         events->poll_events();
         world->update_world(events);
         graphics->update_display(world);
-        SDL_Delay( 17 - (SDL_GetTicks() - tmp) );
+        toWait = 17 - (SDL_GetTicks() - tmp);
+        SDL_Delay(toWait<=17?toWait:0);
     }
     // clean des données
     graphics->clean_graphics();
