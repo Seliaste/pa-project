@@ -10,7 +10,7 @@
 
 Track::Track(std::string title, const std::string& file){
     name = title;
-    tile_size = 100;
+    tile_size = 128;
     fill_tab(file);
 }
 
@@ -73,4 +73,12 @@ glm::ivec2 Track::get_start_position() {
         }
     }
     return {0,0};
+}
+
+void Track::write_lap(Uint32 time_ms){
+    std::ofstream outfile;
+    char filename[32];
+    std::sprintf(filename,"../data/%s.txt",name.c_str());
+    outfile.open(filename, std::ios_base::app);
+    outfile << time_ms << std::endl;
 }

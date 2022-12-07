@@ -49,6 +49,7 @@ SDL_Texture* GraphicsManager::load_png (const char* nomfichier){
 
 void GraphicsManager::update_display(GameWorld* world){
     SDL_RenderClear(renderer);
+    SDL_GetRendererOutputSize(renderer,&win_size_x,&win_size_y);
     render_track(world);
     add_images_to_renderer(world);
     add_timer_text_to_renderer(world);
@@ -77,8 +78,8 @@ void GraphicsManager::add_images_to_renderer(GameWorld* world){
     SrcR.w = size.x;
     SrcR.h = size.y;
     SDL_Rect DestR;
-    DestR.x = ceil(world->getPlayerCar()->get_pos_x()-floor(size.x/2));
-    DestR.y = ceil(world->getPlayerCar()->get_pos_y()-floor(size.y/2));
+    DestR.x = ceil(win_size_x/2-size.x/2);
+    DestR.y = ceil(win_size_y/2-size.y/2);
     DestR.w = ceil(size.x);
     DestR.h = ceil(size.y);
     //SDL_RenderCopy(renderer, background, nullptr, nullptr);
@@ -107,8 +108,8 @@ void GraphicsManager::render_track(GameWorld* world) {
             else {
                 texture = bgtextroad;
             }
-                DestR.x = col * tile_size;
-                DestR.y = row * tile_size;
+                DestR.x = floor((col * tile_size)-world->getPlayerCar()->get_pos_x()+ceil(win_size_x/2));
+                DestR.y = floor((row * tile_size)-world->getPlayerCar()->get_pos_y()+ceil(win_size_y/2));
                 DestR.w = tile_size;
                 DestR.h = tile_size;
                 SDL_RenderCopy(renderer, texture, &SrcR, &DestR);

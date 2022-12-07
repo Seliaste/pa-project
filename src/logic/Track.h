@@ -8,6 +8,7 @@
 #include "glm/vec2.hpp"
 #include <string>
 #include <vector>
+#include <SDL2/SDL.h>
 
 class Track {
 private:
@@ -35,6 +36,8 @@ public:
      int get_tile_size() const;
 
      glm::ivec2 get_start_position();
+
+    void write_lap(Uint32 time_ms);
 };
 
 

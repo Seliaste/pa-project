@@ -76,3 +76,5 @@ build/*
 !build/.gitkeep
 .vscode/
 cmake-build-debug
+
+data/*

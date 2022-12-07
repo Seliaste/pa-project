@@ -14,6 +14,8 @@
 
 class GraphicsManager{
 private:
+    int win_size_x;
+    int win_size_y;
     SDL_Renderer* renderer;
     SDL_Texture* bgtextroad; /*!< Textures liées à l'image du fond de l'écran. */
     SDL_Texture* bgtextgrass;
