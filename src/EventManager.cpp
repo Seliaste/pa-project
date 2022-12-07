@@ -13,45 +13,46 @@ EventManager::EventManager() {
 
 void EventManager::poll_events() {
     while(SDL_PollEvent(&events)) {
-        switch (events.type)
-        {
-            case SDL_QUIT:
-                is_quitting = true;
-                break;
-            case SDL_KEYDOWN:
-                switch (events.key.keysym.sym)
-                {
-                    case SDLK_ESCAPE:
-                        is_quitting = true;
-                        break;
-                    case SDLK_q:
-                        steeraxis = -1;
-                        break;
-                    case SDLK_d:
-                        steeraxis = 1;
-                        break;
-                    case SDLK_z:
-                        is_accelerating = true;
-                        break;
-                    case SDLK_s:
-                        is_braking = true;
-                        break;
-                }
-                break;
-            case SDL_KEYUP:
-                switch (events.key.keysym.sym)
-                {
-                    case SDLK_q:
-                    case SDLK_d:
-                        steeraxis = 0;
-                        break;
-                    case SDLK_z:
-                        is_accelerating = false;
-                        break;
-                    case SDLK_s:
-                        is_braking = false;
-                        break;
-                }
+        if (events.key.repeat == 0) {
+            switch (events.type) {
+                case SDL_QUIT:
+                    is_quitting = true;
+                    break;
+                case SDL_KEYDOWN:
+                    switch (events.key.keysym.sym) {
+                        case SDLK_ESCAPE:
+                            is_quitting = true;
+                            break;
+                        case SDLK_q:
+                            steeraxis += -1;
+                            break;
+                        case SDLK_d:
+                            steeraxis += 1;
+                            break;
+                        case SDLK_z:
+                            is_accelerating = true;
+                            break;
+                        case SDLK_s:
+                            is_braking = true;
+                            break;
+                    }
+                    break;
+                case SDL_KEYUP:
+                    switch (events.key.keysym.sym) {
+                        case SDLK_q:
+                            steeraxis += 1;
+                            break;
+                        case SDLK_d:
+                            steeraxis -= 1;
+                            break;
+                        case SDLK_z:
+                            is_accelerating = false;
+                            break;
+                        case SDLK_s:
+                            is_braking = false;
+                            break;
+                    }
+            }
         }
     }
 }
