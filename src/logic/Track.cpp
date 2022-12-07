@@ -2,6 +2,7 @@
 // Created by totomas on 26/11/22.
 //
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <string>
 #include <sstream>
@@ -9,9 +10,10 @@
 #include "Track.h"
 
 Track::Track(std::string title, const std::string& file){
-    name = title;
+    name = std::move(title);
     tile_size = 128;
     fill_tab(file);
+    current_best = read_best_time();
 }
 
 void Track::fill_tab(const std::string& file_name){
@@ -81,4 +83,29 @@ void Track::write_lap(Uint32 time_ms){
     std::sprintf(filename,"../data/%s.txt",name.c_str());
     outfile.open(filename, std::ios_base::app);
     outfile << time_ms << std::endl;
+    outfile.close();
+    if(time_ms < current_best){
+        current_best = time_ms;
+    }
+}
+
+Uint32 Track::read_best_time(){
+    std::ifstream infile;
+    char filename[32];
+    std::sprintf(filename,"../data/%s.txt",name.c_str());
+    infile.open(filename);
+    std::string line;
+    Uint32 bestTime = 100000;
+    Uint32 time;
+    while (getline (infile, line)) {
+        time = std::stoi(line);
+        if (time < bestTime) {
+            bestTime = time;
+        }
+    }
+    return bestTime;
+}
+
+Uint32 Track::get_best_time() {
+    return current_best;
 }

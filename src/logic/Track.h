@@ -15,6 +15,7 @@ private:
     std::string name;
     int tile_size;
     std::vector<std::vector<char>> track_array;
+    Uint32 current_best;
 public:
     /**
      * Constructor from a file
@@ -38,6 +39,10 @@ public:
      glm::ivec2 get_start_position();
 
     void write_lap(Uint32 time_ms);
+
+    Uint32 read_best_time();
+
+    Uint32 get_best_time();
 };
 
 

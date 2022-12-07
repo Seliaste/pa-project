@@ -8,7 +8,7 @@ GraphicsManager::GraphicsManager(SDL_Window* window){
     bgtextroad = load_image("../resources/road.bmp");
     bgtextgrass = load_image("../resources/grass.bmp");
     car = load_png("../resources/pitstop_car_10.png");
-    timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 64);
+    timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 32);
 
 }
 
@@ -58,9 +58,12 @@ void GraphicsManager::update_display(GameWorld* world){
 
 void GraphicsManager::add_timer_text_to_renderer(GameWorld* world){
     SDL_Color color = { 255, 255, 255 };
-    char timer_string[20];
-    world->get_lap_timer()->get_timer_string(timer_string);
-    SDL_Surface * surface = TTF_RenderText_Solid(timefont, timer_string, color);
+    char curr_time[20];
+    world->get_lap_timer()->get_timer_string(curr_time);
+    char timer_string[80];
+    Uint32 best = world->get_track()->get_best_time();
+    std::sprintf(timer_string,"Time: %s\nBest: %u:%02u",curr_time,best/1000,best%1000/10);
+    SDL_Surface * surface = TTF_RenderText_Blended_Wrapped(timefont, timer_string, color,1000);
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dstrect = { 0, 0, surface->w, surface->h };
     SDL_RenderCopy(renderer, texture, nullptr, &dstrect);
