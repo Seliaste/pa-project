@@ -2,11 +2,14 @@
 #include <vector>
 #include <iostream>
 #include <SDL_image.h>
+#include <random>
 GraphicsManager::GraphicsManager(SDL_Window* window){
     IMG_Init(IMG_INIT_PNG);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     bgtextroad = load_image("../resources/road.bmp");
-    bgtextgrass = load_image("../resources/grass.bmp");
+    bgtextgrass = load_png("../resources/grass.png");
+    bgtextsand = load_png("../resources/sand.png");
+    bgtexttree = load_png("../resources/tree_bushes.png");
     car = load_png("../resources/pitstop_car_10.png");
     timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 32);
 
@@ -88,6 +91,12 @@ void GraphicsManager::add_images_to_renderer(GameWorld* world){
     //SDL_RenderCopy(renderer, background, nullptr, nullptr);
     SDL_RenderCopyEx(renderer, car, &SrcR , &DestR, world->getPlayerCar()->get_rotation_degrees(), nullptr, SDL_FLIP_NONE);
 }
+
+Uint8 randMToN(double M, double N)
+{
+    return M + (rand() / ( RAND_MAX / (N-M) ) ) ;
+}
+
 void GraphicsManager::render_track(GameWorld* world) {
     SDL_Point size1;
     SDL_Point size2;
@@ -103,20 +112,38 @@ void GraphicsManager::render_track(GameWorld* world) {
     SDL_Texture* texture;
     glm::ivec2 size = track->get_size();
     int tile_size = track->get_tile_size();
+    Uint8 random_col;
     for (int row = 0; row < size.y; row++) {
         for (int col = 0; col<size.x; col++) {
-            if (track->get_tile_type(col,row) == 'o') {
-                texture = bgtextgrass;
-            }
-            else {
-                texture = bgtextroad;
+            SDL_Texture* overlay = nullptr; // pour les arbres et petites décos
+            switch (track->get_tile_type(col,row)) {
+                case 's':
+                case 'c':
+                case 'r':
+                    texture = bgtextroad;
+                    break;
+                case 't':
+                    texture = bgtextgrass;
+                    overlay = bgtexttree;
+                    random_col = 128;
+                    SDL_GetTextureColorMod(overlay, &random_col,&random_col,&random_col);
+                    break;
+                case 'g':
+                    texture = bgtextsand;
+                    break;
+                case 'o':
+                default:
+                    texture = bgtextgrass;
+                    break;
             }
                 DestR.x = floor((col * tile_size)-world->getPlayerCar()->get_pos_x()+ceil(win_size_x/2));
                 DestR.y = floor((row * tile_size)-world->getPlayerCar()->get_pos_y()+ceil(win_size_y/2));
                 DestR.w = tile_size;
                 DestR.h = tile_size;
                 SDL_RenderCopy(renderer, texture, &SrcR, &DestR);
-
+                if(overlay != nullptr){
+                    SDL_RenderCopy(renderer, overlay, &SrcR, &DestR);
+                }
         }
     }
 }

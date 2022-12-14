@@ -22,7 +22,8 @@ void GameWorld::update_world(EventManager* events){
         player->brake(.1); // passive decay
     }
     player->steer(events->get_steering_axis());
-    if(player->get_tile_under_car(track) == 'o'){
+    auto tile_under = player->get_tile_under_car(track);
+    if(tile_under == 'o' || tile_under == 'g' || tile_under == 't'){
         player->apply_slowdown();
     }
     player->compute_car_position();
