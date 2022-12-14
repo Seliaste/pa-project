@@ -3,7 +3,7 @@
 
 GameWorld::GameWorld() {
     track = new Track("Monza","../resources/track1.txt");
-    glm::ivec2 startpos = track->get_start_position();
+    startpos = track->get_start_position();
     int tile_size = track->get_tile_size();
     startline = new Trigger(startpos.x,startpos.y,tile_size,tile_size);
     player = new Car(startpos.x+tile_size/2,startpos.y+tile_size/2);
@@ -28,8 +28,11 @@ void GameWorld::update_world(EventManager* events){
     }
     player->compute_car_position();
     compute_checkpoint_updates();
-    if(startline->is_overlapping(player)){
+    if(startline->is_overlapping(player)) {
         try_validating_lap();
+    }
+    if(events->get_wants_to_restart()){
+        reset_game();
     }
 }
 
@@ -41,6 +44,16 @@ void GameWorld::clear_game_data(){
     for(Trigger* cp: checkpoints) {
         delete cp;
     }
+}
+
+void GameWorld::reset_game(){
+    int tile_size = track->get_tile_size();
+    delete player;
+    player = new Car(startpos.x+tile_size/2,startpos.y+tile_size/2);
+    lap_timer->reset();
+    validated[0] = false;
+    validated[1] = false;
+    validated[2] = false;
 }
 
 Car *GameWorld::getPlayerCar() {

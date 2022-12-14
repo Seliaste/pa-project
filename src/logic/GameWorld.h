@@ -18,6 +18,7 @@
 
 class GameWorld{
 private:
+    glm::ivec2 startpos;
     Car* player;
     Timer* lap_timer;
     Track* track;
@@ -38,6 +39,8 @@ public:
      * @brief Clears memory for dynamic objects
      */
     void clear_game_data();
+
+    void reset_game();
 
     Timer* get_lap_timer();
 

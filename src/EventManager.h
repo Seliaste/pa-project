@@ -11,6 +11,7 @@ class EventManager {
 
 private:
     SDL_Event events{};
+    bool wants_to_restart;
     bool is_playing;
     bool is_pressed;
     bool is_accelerating;
@@ -51,6 +52,8 @@ public:
      * @return true if the quitting should happen
      */
     bool get_is_quitting() const;
+
+    bool get_wants_to_restart() const;
 
     int get_steering_axis();
 };

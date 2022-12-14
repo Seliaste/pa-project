@@ -47,7 +47,7 @@ void Car::brake(double coeff) {
 }
 
 void Car::steer(int rate) {
-    double steer_speed_coeff = (curr_speed_x*2);
+    double steer_speed_coeff = (curr_speed_x*1.5);
     if(steer_speed_coeff > 1){
         steer_speed_coeff = 1;
     }
