@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
     }
     // Créer la fenêtre
     window = SDL_CreateWindow("Fenetre SDL", SDL_WINDOWPOS_CENTERED,
-                               SDL_WINDOWPOS_CENTERED, 1280, 720, 0);
+                               SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_FULLSCREEN_DESKTOP);
     if (window == nullptr) // En cas d’erreur
     {
         printf("Erreur de la creation d’une fenetre: %s", SDL_GetError());

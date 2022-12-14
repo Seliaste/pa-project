@@ -2,7 +2,7 @@
 #include <iostream>
 
 GameWorld::GameWorld() {
-    track = new Track("Tsukubad","../resources/track1.txt");
+    track = new Track("Monza","../resources/track1.txt");
     glm::ivec2 startpos = track->get_start_position();
     int tile_size = track->get_tile_size();
     startline = new Trigger(startpos.x,startpos.y,tile_size,tile_size);
@@ -80,10 +80,10 @@ void GameWorld::try_validating_lap() {
     bool allvalid = true;
     for(bool validation: validated){allvalid = allvalid && validation;} // check all CPs
     if(allvalid){
+        track->write_lap(lap_timer->get_current_time());
         lap_timer->reset();
         validated[0] = false;
         validated[1] = false;
         validated[2] = false;
-
     }
 }
