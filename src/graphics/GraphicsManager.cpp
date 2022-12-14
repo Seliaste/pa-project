@@ -112,7 +112,6 @@ void GraphicsManager::render_track(GameWorld* world) {
     SDL_Texture* texture;
     glm::ivec2 size = track->get_size();
     int tile_size = track->get_tile_size();
-    Uint8 random_col;
     for (int row = 0; row < size.y; row++) {
         for (int col = 0; col<size.x; col++) {
             SDL_Texture* overlay = nullptr; // pour les arbres et petites décos
@@ -125,8 +124,6 @@ void GraphicsManager::render_track(GameWorld* world) {
                 case 't':
                     texture = bgtextgrass;
                     overlay = bgtexttree;
-                    random_col = 128;
-                    SDL_GetTextureColorMod(overlay, &random_col,&random_col,&random_col);
                     break;
                 case 'g':
                     texture = bgtextsand;
