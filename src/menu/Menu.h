@@ -16,13 +16,16 @@ private:
     TTF_Font* menu_font;
     EventManager* eventManager;
     SDL_Rect button;
+    char* bg_file;
 public:
     Menu(EventManager* events);
     void display_main_menu(SDL_Window* window);
 
+    void display_menu_bg(SDL_Texture* texture_bg);
+
     void display_menu_item(const char *text, int x, int y);
 
-    void display_button(const char*,int x,int y);
+    void display_button(const char*,int x,int y,TTF_Font* font);
 
     void start_game();
 };

@@ -3,13 +3,16 @@
 //
 
 #include "Menu.h"
+#include "../graphics/GraphicsManager.h"
 #include <string>
 #include <iostream>
-
+#include <SDL_image.h>
 Menu::Menu(EventManager* events ) {
     keep_displaying = true;
-    menu_font = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf",64);
+    menu_font = TTF_OpenFont("../resources/fonts/Xenogears.ttf",64);
     eventManager = events;
+    bg_file = "../resources/pitstop_car_10.png";
+
 
 }
 
@@ -18,19 +21,28 @@ void Menu::display_main_menu(SDL_Window *window) {
     int x;
     int y;
     SDL_GetWindowSize(window,&x,&y);
-
+    SDL_Surface* surface = IMG_Load(bg_file);
+    if(surface == NULL)
+    {
+        printf( "Unable to load image %s! SDL_image Error: %s\n", bg_file, IMG_GetError() );
+    }
+    SDL_Texture* texture_bg = SDL_CreateTextureFromSurface(renderer,surface);
+    SDL_FreeSurface(surface);
     while (keep_displaying)
     {
         eventManager->poll_events();
+        display_menu_bg(texture_bg);
         display_menu_item("Initial C",x/2, 64);
-        display_button("START",x/2, 256);
+        display_button("START",x/2, 256,TTF_OpenFont("../resources/fonts/Facon.ttf",64));
         SDL_RenderPresent(renderer);
         keep_displaying = !eventManager->get_is_quitting();
         start_game();
     }
-
+    SDL_DestroyTexture(texture_bg);
 }
-
+void Menu::display_menu_bg(SDL_Texture* texture_bg){
+    SDL_RenderCopy(renderer, texture_bg, nullptr, nullptr);
+}
 void Menu::display_menu_item(const char* text,int x,int y){
     SDL_Color color = { 255, 255, 255 };
     SDL_Surface * surface = TTF_RenderText_Solid(menu_font, text, color);
@@ -42,9 +54,9 @@ void Menu::display_menu_item(const char* text,int x,int y){
 
 }
 
-void Menu::display_button(const char* text,int x,int y){
+void Menu::display_button(const char* text,int x,int y, TTF_Font* font){
     SDL_Color color = { 255, 255, 255 };
-    SDL_Surface * surface = TTF_RenderText_Solid(menu_font, text, color);
+    SDL_Surface * surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dstrect = { x - (surface->w /2), y , surface->w, surface->h };
     this -> button = dstrect;
