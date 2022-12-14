@@ -19,6 +19,8 @@ private:
     SDL_Renderer* renderer;
     SDL_Texture* bgtextroad; /*!< Textures liées à l'image du fond de l'écran. */
     SDL_Texture* bgtextgrass;
+    SDL_Texture* bgtextsand;
+    SDL_Texture* bgtexttree;
     SDL_Texture* car;
     TTF_Font* timefont;
 

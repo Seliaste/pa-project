@@ -47,7 +47,12 @@ void Car::brake(double coeff) {
 }
 
 void Car::steer(int rate) {
-    rot = glm::rotate(rot,(double)rate*turnrate);
+    double steer_speed_coeff = (curr_speed_x*1.5);
+    if(steer_speed_coeff > 1){
+        steer_speed_coeff = 1;
+    }
+    double angle = (rate*turnrate) * steer_speed_coeff;
+    rot = glm::rotate(rot,angle);
 }
 
 double Car::get_pos_x() const{

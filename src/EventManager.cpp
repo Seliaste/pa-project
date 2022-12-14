@@ -10,6 +10,7 @@ EventManager::EventManager() {
     is_accelerating = false;
     is_quitting = false;
     is_braking = false;
+    wants_to_restart = false;
     steeraxis = 0;
 }
 
@@ -37,6 +38,9 @@ void EventManager::poll_events() {
                         case SDLK_s:
                             is_braking = true;
                             break;
+                        case SDLK_r:
+                            wants_to_restart = true;
+                            break;
                     }
                     break;
                 case SDL_KEYUP:
@@ -52,6 +56,9 @@ void EventManager::poll_events() {
                             break;
                         case SDLK_s:
                             is_braking = false;
+                            break;
+                        case SDLK_r:
+                            wants_to_restart = false;
                             break;
                     }
                 case SDL_MOUSEBUTTONDOWN:
@@ -87,4 +94,8 @@ int EventManager::get_steering_axis() {
 
 bool EventManager::get_is_braking() const {
     return  this->is_braking;
+}
+
+bool EventManager::get_wants_to_restart() const {
+    return wants_to_restart;
 }
