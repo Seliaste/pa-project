@@ -33,13 +33,15 @@ int main(int argc, char const *argv[])
         return EXIT_FAILURE;
     }
     TTF_Init();
-    auto* menu = new Menu();
+    auto* events = new EventManager();
 
-    // menu->display_main_menu(window);
+    auto* menu = new Menu(events);
+
+    menu->display_main_menu(window);
 
     auto* graphics = new GraphicsManager(window);
 
-    auto* events = new EventManager();
+
 
     auto* world = new GameWorld();// initialisation des données
     Uint64 tmp;

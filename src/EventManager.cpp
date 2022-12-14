@@ -5,6 +5,8 @@
 #include "EventManager.h"
 
 EventManager::EventManager() {
+    is_playing = false;
+    is_pressed = false;
     is_accelerating = false;
     is_quitting = false;
     is_braking = false;
@@ -52,8 +54,22 @@ void EventManager::poll_events() {
                         is_braking = false;
                         break;
                 }
+            case SDL_MOUSEBUTTONDOWN:
+                is_pressed = true;
+                break;
+            case SDL_MOUSEBUTTONUP:
+                is_pressed = false;
+                break;
         }
     }
+}
+
+bool EventManager::get_is_playing() const {
+    return this->is_playing;
+}
+
+bool EventManager::get_is_pressed() const {
+    return this->is_pressed;
 }
 
 bool EventManager::get_is_accelerating() const {

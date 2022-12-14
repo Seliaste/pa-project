@@ -11,6 +11,8 @@ class EventManager {
 
 private:
     SDL_Event events{};
+    bool is_playing;
+    bool is_pressed;
     bool is_accelerating;
     bool is_quitting;
     bool is_braking;
@@ -23,7 +25,17 @@ public:
      * @brief Polls SDL events and changes the object fields accordingly
      */
     void poll_events();
+    /**
+     * Has the game started
+     * @return
+     */
+    bool get_is_playing() const;
 
+    /**
+     * has the mouse button been pressed
+     * @return
+     */
+    bool get_is_pressed() const;
     /**
      * @brief Is the acceleration key pressed
      *
