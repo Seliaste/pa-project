@@ -17,7 +17,7 @@
 int main(int argc, char const *argv[])
 {
     SDL_Window *window;  // Déclaration de la fenêtre
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) // Initialisation de la SDL
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) // Initialisation de la SDL
     {
         printf("Erreur d’initialisation de la SDL: %s", SDL_GetError());
         SDL_Quit();
