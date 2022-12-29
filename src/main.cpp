@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Aéna Aria (aena.aria2@etu.univ-lorraine.fr)
- * @brief Fichier main exécutable
+ * @brief Main executable file
  * @date 2022-10-26
  */
 #ifndef MAIN_CPP
@@ -16,47 +16,62 @@
 #include "audio/AudioManager.h"
 
 int main() {
-    SDL_Window *window;  // Déclaration de la fenêtre
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) // Initialisation de la SDL
+
+    // -- INITIALISATIONS --
+
+    // SDL Initialization
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
-        printf("Erreur d’initialisation de la SDL: %s", SDL_GetError());
+        std::cout << "SDL initialization error: " << SDL_GetError() << std::endl;
         SDL_Quit();
         return EXIT_FAILURE;
     }
-    // Créer la fenêtre
-    window = SDL_CreateWindow("Fenetre SDL", SDL_WINDOWPOS_CENTERED,
+
+    // Creating the window
+    SDL_Window *window = SDL_CreateWindow("Initial C", SDL_WINDOWPOS_CENTERED,
                               SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_FULLSCREEN_DESKTOP);
-    if (window == nullptr) // En cas d’erreur
+    if (window == nullptr)
     {
-        printf("Erreur de la creation d’une fenetre: %s", SDL_GetError());
+        std::cout << "Window creation error :" << SDL_GetError() << std::endl;
         SDL_Quit();
         return EXIT_FAILURE;
     }
-    TTF_Init();
-    auto *events = new EventManager();
+
+    TTF_Init(); // for displaying text
+
+    auto *events = new EventManager();  // will gather SDL inputs and events
 
     auto *audio = new AudioManager();
-    audio->playMusic();
+    audio->playMusic(); // Plays main game music
 
     auto *menu = new Menu(events, window);
-
     menu->display_main_menu();
+    // whats is written below won't run before the menu has finished displaying
 
     auto *graphics = new GraphicsManager(window);
 
-    auto *world = new GameWorld();// initialisation des données
+    auto *world = new GameWorld(); // Initializes game data
+
+    // Useful for frame limiter calculation
     Uint64 tmp;
     Uint64 toWait;
-    // Boucle principale
+
+
+    // -- MAIN GAME LOOP --
     while (!events->get_is_quitting()) {
         tmp = SDL_GetTicks();
+
+        // 3-steps game loop: events gathering, world data updating, and displaying.
         events->poll_events();
         world->update_world(events);
         graphics->update_display(world);
+
         toWait = 17 - (SDL_GetTicks() - tmp);
-        SDL_Delay(toWait <= 17 ? toWait : 0);
+        SDL_Delay(toWait <= 17 ? toWait : 0);   // delays to framelimit to ~60fps
     }
-    // clean des données
+
+
+    // -- DATA CLEANUP --
     graphics->clean_graphics();
     delete graphics;
     world->clear_game_data();
