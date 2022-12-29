@@ -1,21 +1,29 @@
-# pa-project
+# PA-Project
 
-2D racing game in SDL
+### 2D racing game made in C++ usind SDL
+
+## Features:
 
 - Menu
+- Basic car physics
+- Track timer, with checkpoint verification
+- Best time tracker
+- Customizable tracks editing the track file
 
-- Different tracks (txt files)
+## Controls:
 
-- Different cars (stats ? or skins)
+Z,Q,S,D to move  
+R to reset to start  
+Escape to quit
 
-- Manual gearbox
+## How to run
 
-- Boosts
-
-- Opponents with collisions
-
-- Save best time for each Track in a file
-
-- Ranking with a queue
-
-- Procedural Track generation
+Install required dependencies: SDL2, SDL2_image, SDL2_ttf and SDL2_mixer
+```shell
+# in the pa-project directory:
+cd build
+cmake ..
+make 
+# to run:
+./PA-Project
+```
