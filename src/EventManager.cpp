@@ -14,8 +14,8 @@ EventManager::EventManager() {
 }
 
 void EventManager::poll_events() {
-    while (SDL_PollEvent(&events)) {
-        if (events.key.repeat == 0) {
+    while (SDL_PollEvent(&events)) {    // loops on the events SDL throws at us on this frame
+        if (events.key.repeat == 0) {   // removes all key repetition from holding down the same key
             switch (events.type) {
                 case SDL_QUIT:
                     is_quitting = true;
@@ -44,10 +44,10 @@ void EventManager::poll_events() {
                     break;
                 case SDL_KEYUP:
                     switch (events.key.keysym.sym) {
-                        case SDLK_q:
+                        case SDLK_q:    // cancels out previous input without compromising the other axis
                             steeraxis += 1;
                             break;
-                        case SDLK_d:
+                        case SDLK_d:    // cancels out previous input without compromising the other axis
                             steeraxis -= 1;
                             break;
                         case SDLK_z:

@@ -39,6 +39,11 @@ public:
      */
     [[nodiscard]] bool get_is_accelerating() const;
 
+    /**
+     * @brief Is the braking key pressed
+     *
+     * @return true if the braking event is happening
+     */
     [[nodiscard]] bool get_is_braking() const;
 
     /**
@@ -48,8 +53,20 @@ public:
      */
     [[nodiscard]] bool get_is_quitting() const;
 
+    /**
+     * @brief Has a restart event been triggered
+     *
+     * @return true if the user wants to restart (AkA reset the car)
+     */
     [[nodiscard]] bool get_wants_to_restart() const;
 
+    /**
+     * @brief Returns the steering axis
+     *
+     * @return an int between -1 and 1.
+     * NOTE: THIS COULD BE CHANGED TO A FLOAT TO ALLOW PARTIAL STEERING,
+     * for example a gamepad. Will try to implement later
+     */
     [[nodiscard]] int get_steering_axis() const;
 };
 
