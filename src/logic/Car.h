@@ -26,7 +26,7 @@ public:
      * @param x base horizontal position of the car
      * @param y base vertical position of the car
      */
-    Car(int x, int y);
+    Car(double x, double y);
 
     /**
      * @brief Updates the car position according to its current variables
@@ -39,6 +39,10 @@ public:
      */
     void accelerate();
 
+    /**
+     * @brief Slows down the car
+     * @param coeff range: [0,1], braking power
+     */
     void brake(double coeff);
 
     /**
@@ -47,14 +51,31 @@ public:
      */
     void steer(int rate);
 
+    /**
+     * @brief Gets the horizontal position on the car in the game world
+     */
     [[nodiscard]] double get_pos_x() const;
 
+    /**
+     * @brief Gets the vertical position on the car in the game world
+     */
     [[nodiscard]] double get_pos_y() const;
 
+    /**
+     * @brief Gets the angle the car is currently having
+     */
     [[nodiscard]] double get_rotation_degrees() const;
 
+    /**
+     * @brief Applies a slowdown, i.e. when the car is on a tile that slows down
+     */
     void apply_slowdown();
 
+    /**
+     *
+     * @param track The track the car is on right now
+     * @return character representing the tile type
+     */
     char get_tile_under_car(Track *track) const;
 };
 

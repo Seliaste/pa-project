@@ -9,10 +9,10 @@
 #include "glm/gtx/vector_angle.hpp"
 
 
-Car::Car(int x, int y) {
+Car::Car(double x, double y) {
     pos = glm::vec2(0, 0);
-    pos.x = (double) x;
-    pos.y = (double) y;
+    pos.x = x;
+    pos.y = y;
     curr_speed_x = 0;
     rot = glm::vec2(-1, 0);
     slowed = false;
