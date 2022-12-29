@@ -1,9 +1,6 @@
-/**
- * @file GameWorld.h
- * @author Aéna Aria (aena.aria2@etu.univ-lorraine.fr)
- * @brief Partie qui process les données de jeu
- * @date 2022-10-26
- */
+//
+// Created by seliaste on 11/30/22.
+//
 #ifndef PA_PROJECT_GAME_WORLD_H
 #define PA_PROJECT_GAME_WORLD_H
 
@@ -18,7 +15,7 @@
 
 class GameWorld {
 private:
-    glm::ivec2 startpos{};
+    glm::ivec2 start_pos{};
     Car *player;
     Timer *lap_timer;
     Track *track;
@@ -33,26 +30,47 @@ public:
      * @brief Updates the game world accordingly
      * @param events the EventManager to poll events from
      */
-    void update_world(EventManager *events);
+    void updateWorld(EventManager *events);
 
     /**
      * @brief Clears memory for dynamic objects
      */
-    void clear_game_data();
+    void clearGameData();
 
-    void reset_game();
+    /**
+     * @brief Resets time, checkpoints and places the car back at the starting line
+     */
+    void resetGame();
 
-    Timer *get_lap_timer();
+    /**
+     * @return the lap Timer object
+     */
+    Timer *getLapTimer();
 
+    /**
+     * @return the player car
+     */
     Car *getPlayerCar();
 
-    Track *get_track();
+    /**
+     * @return the track of the gameworld
+     */
+    Track *getTrack();
 
-    void init_checkpoints();
+    /**
+     * @brief creates the checkpoint objects and stores them in the cp array
+     */
+    void initCheckpoints();
 
-    void compute_checkpoint_updates();
+    /**
+     * @brief checks for collision in the checkpoints
+     */
+    void computeCheckpointUpdates();
 
-    void try_validating_lap();
+    /**
+     * @brief checks for lap validation
+     */
+    void tryValidatingLap();
 };
 
 #endif

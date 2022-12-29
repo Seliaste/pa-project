@@ -3,15 +3,16 @@
 
 GameWorld::GameWorld() {
     track = new Track("Monza", "../resources/track1.txt");
-    startpos = track->get_start_position();
+    start_pos = track->get_start_position();
     int tile_size = track->get_tile_size();
-    startline = new Trigger(startpos.x, startpos.y, tile_size, tile_size);
-    player = new Car(startpos.x + tile_size / 2, startpos.y + tile_size / 2);
+    startline = new Trigger(start_pos.x, start_pos.y, tile_size, tile_size);
+    // initializes player car in the middle of the start line
+    player = new Car(ceil(start_pos.x + tile_size / 2), ceil(start_pos.y + tile_size / 2));
     lap_timer = new Timer();
-    init_checkpoints();
+    initCheckpoints();
 }
 
-void GameWorld::update_world(EventManager *events) {
+void GameWorld::updateWorld(EventManager *events) {
     if (events->get_is_accelerating()) {
         player->accelerate();
     }
@@ -27,16 +28,16 @@ void GameWorld::update_world(EventManager *events) {
         player->apply_slowdown();
     }
     player->compute_car_position();
-    compute_checkpoint_updates();
+    computeCheckpointUpdates();
     if (startline->is_overlapping(player)) {
-        try_validating_lap();
+        tryValidatingLap();
     }
     if (events->get_wants_to_restart()) {
-        reset_game();
+        resetGame();
     }
 }
 
-void GameWorld::clear_game_data() {
+void GameWorld::clearGameData() {
     delete player;
     delete lap_timer;
     delete track;
@@ -46,10 +47,10 @@ void GameWorld::clear_game_data() {
     }
 }
 
-void GameWorld::reset_game() {
+void GameWorld::resetGame() {
     int tile_size = track->get_tile_size();
     delete player;
-    player = new Car(startpos.x + tile_size / 2, startpos.y + tile_size / 2);
+    player = new Car(ceil(start_pos.x + tile_size / 2), ceil(start_pos.y + tile_size / 2));
     lap_timer->reset();
     validated[0] = false;
     validated[1] = false;
@@ -60,15 +61,15 @@ Car *GameWorld::getPlayerCar() {
     return player;
 }
 
-Timer *GameWorld::get_lap_timer() {
+Timer *GameWorld::getLapTimer() {
     return lap_timer;
 }
 
-Track *GameWorld::get_track() {
+Track *GameWorld::getTrack() {
     return track;
 }
 
-void GameWorld::init_checkpoints() {
+void GameWorld::initCheckpoints() {
     int i = 0;
     glm::ivec2 size = track->get_size();
     int tilesize = track->get_tile_size();
@@ -82,7 +83,7 @@ void GameWorld::init_checkpoints() {
     }
 }
 
-void GameWorld::compute_checkpoint_updates() {
+void GameWorld::computeCheckpointUpdates() {
     for (int i = 0; i < 3; i++) {
         if (checkpoints[i]->is_overlapping(player)) {
             validated[i] = true;
@@ -90,7 +91,7 @@ void GameWorld::compute_checkpoint_updates() {
     }
 }
 
-void GameWorld::try_validating_lap() {
+void GameWorld::tryValidatingLap() {
     bool allvalid = true;
     for (bool validation: validated) { allvalid = allvalid && validation; } // check all CPs
     if (allvalid) {

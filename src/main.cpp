@@ -63,7 +63,7 @@ int main() {
 
         // 3-steps game loop: events gathering, world data updating, and displaying.
         events->poll_events();
-        world->update_world(events);
+        world->updateWorld(events);
         graphics->update_display(world);
 
         toWait = 17 - (SDL_GetTicks() - tmp);
@@ -74,7 +74,7 @@ int main() {
     // -- DATA CLEANUP --
     graphics->clean_graphics();
     delete graphics;
-    world->clear_game_data();
+    world->clearGameData();
     delete world;
     delete events;
     delete menu;
