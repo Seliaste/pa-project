@@ -12,24 +12,24 @@ private:
     Uint64 lastResetTick = 0;
 public:
     /**
-     * creates the timer and starts it
+     * @brief creates the timer and starts it
      */
     Timer();
 
     /**
-     * resets the timer to 0
+     * @brief resets the timer to 0
      */
     void reset();
 
     /**
      * @return time since initialization/last reset
      */
-    [[nodiscard]] Uint32 get_current_time() const;
+    [[nodiscard]] Uint32 getCurrentTime() const;
 
     /**
      * @return a string in the format s:ms
      */
-    void get_timer_string(char *str) const;
+    void getTimerString(char *str) const;
 };
 
 

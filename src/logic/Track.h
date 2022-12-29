@@ -14,6 +14,7 @@ class Track {
 private:
     std::string name;
     int tile_size;
+    // vector for scalability
     std::vector<std::vector<char>> track_array;
     Uint32 current_best;
 public:
@@ -28,21 +29,50 @@ public:
      * Creates a 2d vector containing the characters from the file
      * @return vector of a char vector
      */
-    void fill_tab(const std::string &file_name);
+    void fillTab(const std::string &file_name);
 
-    glm::ivec2 get_size();
+    /**
+     * Gets the size of the map in 2d
+     * @return 2d integer vector for size
+     */
+    glm::ivec2 getSize();
 
-    char get_tile_type(int x, int y);
+    /**
+     * Returns the type of the tile on the specified coordinates
+     * @param x horizontal position
+     * @param y vertical position
+     * @return character representing the tile type
+     */
+    char getTileType(int x, int y);
 
-    [[nodiscard]] int get_tile_size() const;
+    /**
+     * gets the size of a single tile
+     * @return size of tile in pixels
+     */
+    [[nodiscard]] int getTileSize() const;
 
-    glm::ivec2 get_start_position();
+    /**
+     * @return the start coordinates (adjusted with tile size)
+     */
+    glm::ivec2 getStartPosition();
 
-    void write_lap(Uint32 time_ms);
+    /**
+     * writes the laptime in the corresponding file
+     * @param time_ms time of the lap in ms
+     */
+    void writeLap(Uint32 time_ms);
 
-    Uint32 read_best_time();
+    /**
+     * returns the best laptime from the corresponding file
+     * @return time of the lap in ms
+     */
+    [[nodiscard]] Uint32 readBestTime();
 
-    [[nodiscard]] Uint32 get_best_time() const;
+    /**
+     * returns the best laptime without accessing the file
+     * @return time of the lap in ms
+     */
+    [[nodiscard]] Uint32 getBestTime() const;
 };
 
 

@@ -12,11 +12,11 @@
 Track::Track(std::string title, const std::string &file) {
     name = std::move(title);
     tile_size = 128;
-    fill_tab(file);
-    current_best = read_best_time();
+    fillTab(file);
+    current_best = readBestTime();
 }
 
-void Track::fill_tab(const std::string &file_name) {
+void Track::fillTab(const std::string &file_name) {
     std::string line;
     char word;
 
@@ -46,22 +46,22 @@ void Track::fill_tab(const std::string &file_name) {
     this->track_array = tab_track;
 }
 
-glm::ivec2 Track::get_size() {
+glm::ivec2 Track::getSize() {
     return {track_array[0].size(), track_array.size()};
 }
 
-int Track::get_tile_size() const {
+int Track::getTileSize() const {
     return tile_size;
 }
 
-char Track::get_tile_type(int x, int y) {
+char Track::getTileType(int x, int y) {
     if (y >= 0 && y < track_array.size() && x >= 0 && x < track_array[y].size()) {
         return track_array[y][x];
     }
     return 'o';
 }
 
-glm::ivec2 Track::get_start_position() {
+glm::ivec2 Track::getStartPosition() {
     for (int y = 0; y < track_array.size(); y++) {
         for (int x = 0; x < track_array[y].size(); x++) {
             if (track_array[y][x] == 's') {
@@ -72,7 +72,7 @@ glm::ivec2 Track::get_start_position() {
     return {0, 0};
 }
 
-void Track::write_lap(Uint32 time_ms) {
+void Track::writeLap(Uint32 time_ms) {
     std::ofstream outfile;
     char filename[32];
     std::sprintf(filename, "../data/%s.txt", name.c_str());
@@ -84,7 +84,7 @@ void Track::write_lap(Uint32 time_ms) {
     }
 }
 
-Uint32 Track::read_best_time() {
+Uint32 Track::readBestTime() {
     std::ifstream infile;
     char filename[32];
     std::sprintf(filename, "../data/%s.txt", name.c_str());
@@ -92,6 +92,8 @@ Uint32 Track::read_best_time() {
     std::string line;
     Uint32 bestTime = 100000;
     Uint32 time;
+    // if file is empty will keep default value,
+    // high enough to make the player understand that there is no valid lap yet
     while (getline(infile, line)) {
         time = std::stoi(line);
         if (time < bestTime) {
@@ -101,6 +103,6 @@ Uint32 Track::read_best_time() {
     return bestTime;
 }
 
-Uint32 Track::get_best_time() const {
+Uint32 Track::getBestTime() const {
     return current_best;
 }
