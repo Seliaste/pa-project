@@ -5,7 +5,6 @@
 #include "EventManager.h"
 
 EventManager::EventManager() {
-    is_playing = false;
     is_pressed = false;
     is_accelerating = false;
     is_quitting = false;
@@ -15,7 +14,7 @@ EventManager::EventManager() {
 }
 
 void EventManager::poll_events() {
-    while(SDL_PollEvent(&events)) {
+    while (SDL_PollEvent(&events)) {
         if (events.key.repeat == 0) {
             switch (events.type) {
                 case SDL_QUIT:
@@ -72,10 +71,6 @@ void EventManager::poll_events() {
     }
 }
 
-bool EventManager::get_is_playing() const {
-    return this->is_playing;
-}
-
 bool EventManager::get_is_pressed() const {
     return this->is_pressed;
 }
@@ -88,12 +83,12 @@ bool EventManager::get_is_quitting() const {
     return this->is_quitting;
 }
 
-int EventManager::get_steering_axis() {
+int EventManager::get_steering_axis() const {
     return this->steeraxis;
 }
 
 bool EventManager::get_is_braking() const {
-    return  this->is_braking;
+    return this->is_braking;
 }
 
 bool EventManager::get_wants_to_restart() const {

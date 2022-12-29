@@ -4,6 +4,7 @@
 
 #ifndef PA_PROJECT_TRIGGER_H
 #define PA_PROJECT_TRIGGER_H
+
 #include "glm/vec2.hpp"
 #include "Car.h"
 
@@ -22,7 +23,8 @@ public:
      * @param h Height
      */
     Trigger(int x, int y, int w, int h);
-    bool is_overlapping(Car* player) const;
+
+    bool is_overlapping(Car *player) const;
 };
 
 

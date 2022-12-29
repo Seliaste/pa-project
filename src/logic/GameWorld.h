@@ -16,15 +16,15 @@
 #include "Track.h"
 #include "Trigger.h"
 
-class GameWorld{
+class GameWorld {
 private:
-    glm::ivec2 startpos;
-    Car* player;
-    Timer* lap_timer;
-    Track* track;
-    Trigger* startline;
-    Trigger* checkpoints[3]{nullptr, nullptr, nullptr};
-    bool validated[3]{false,false,false};
+    glm::ivec2 startpos{};
+    Car *player;
+    Timer *lap_timer;
+    Track *track;
+    Trigger *startline;
+    Trigger *checkpoints[3]{nullptr, nullptr, nullptr};
+    bool validated[3]{false, false, false};
 
 public:
     GameWorld();
@@ -33,7 +33,7 @@ public:
      * @brief Updates the game world accordingly
      * @param events the EventManager to poll events from
      */
-    void update_world(EventManager* events);
+    void update_world(EventManager *events);
 
     /**
      * @brief Clears memory for dynamic objects
@@ -42,11 +42,11 @@ public:
 
     void reset_game();
 
-    Timer* get_lap_timer();
+    Timer *get_lap_timer();
 
-    Car* getPlayerCar();
+    Car *getPlayerCar();
 
-    Track* get_track();
+    Track *get_track();
 
     void init_checkpoints();
 

@@ -15,8 +15,7 @@
 #include "menu/Menu.h"
 #include "audio/AudioManager.h"
 
-int main()
-{
+int main() {
     SDL_Window *window;  // Déclaration de la fenêtre
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) // Initialisation de la SDL
     {
@@ -26,7 +25,7 @@ int main()
     }
     // Créer la fenêtre
     window = SDL_CreateWindow("Fenetre SDL", SDL_WINDOWPOS_CENTERED,
-                               SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_FULLSCREEN_DESKTOP);
+                              SDL_WINDOWPOS_CENTERED, 1280, 720, SDL_WINDOW_FULLSCREEN_DESKTOP);
     if (window == nullptr) // En cas d’erreur
     {
         printf("Erreur de la creation d’une fenetre: %s", SDL_GetError());
@@ -34,29 +33,28 @@ int main()
         return EXIT_FAILURE;
     }
     TTF_Init();
-    auto* events = new EventManager();
+    auto *events = new EventManager();
 
-    auto* audio = new AudioManager();
+    auto *audio = new AudioManager();
     audio->playMusic();
 
-    auto* menu = new Menu(events,window);
+    auto *menu = new Menu(events, window);
 
     menu->display_main_menu();
 
-    auto* graphics = new GraphicsManager(window);
+    auto *graphics = new GraphicsManager(window);
 
-    auto* world = new GameWorld();// initialisation des données
+    auto *world = new GameWorld();// initialisation des données
     Uint64 tmp;
     Uint64 toWait;
     // Boucle principale
-    while (!events->get_is_quitting())
-    {
+    while (!events->get_is_quitting()) {
         tmp = SDL_GetTicks();
         events->poll_events();
         world->update_world(events);
         graphics->update_display(world);
         toWait = 17 - (SDL_GetTicks() - tmp);
-        SDL_Delay(toWait<=17?toWait:0);
+        SDL_Delay(toWait <= 17 ? toWait : 0);
     }
     // clean des données
     graphics->clean_graphics();

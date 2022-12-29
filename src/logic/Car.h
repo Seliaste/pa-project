@@ -8,7 +8,7 @@
 #include "glm/vec2.hpp"
 #include "Track.h"
 
-class Car{
+class Car {
 private:
     constexpr static double v_max = 2;
     bool slowed;
@@ -27,10 +27,12 @@ public:
      * @param y base vertical position of the car
      */
     Car(int x, int y);
+
     /**
      * @brief Updates the car position according to its current variables
      */
     void compute_car_position();
+
     /**
      * @brief Updates car values to increase speed.
      * Should be used when an acceleration event happens
@@ -45,14 +47,15 @@ public:
      */
     void steer(int rate);
 
-    double get_pos_x() const;
+    [[nodiscard]] double get_pos_x() const;
 
-    double get_pos_y() const;
+    [[nodiscard]] double get_pos_y() const;
 
-    double get_rotation_degrees() const;
+    [[nodiscard]] double get_rotation_degrees() const;
 
     void apply_slowdown();
 
-    char get_tile_under_car(Track* track) const;
+    char get_tile_under_car(Track *track) const;
 };
+
 #endif //PA_PROJECT_CAR_H

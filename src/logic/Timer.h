@@ -24,12 +24,12 @@ public:
     /**
      * @return time since initialization/last reset
      */
-    Uint32 get_current_time() const;
+    [[nodiscard]] Uint32 get_current_time() const;
 
     /**
      * @return a string in the format s:ms
      */
-    void get_timer_string(char* str) const;
+    void get_timer_string(char *str) const;
 };
 
 

@@ -12,7 +12,6 @@ class EventManager {
 private:
     SDL_Event events{};
     bool wants_to_restart;
-    bool is_playing;
     bool is_pressed;
     bool is_accelerating;
     bool is_quitting;
@@ -26,36 +25,32 @@ public:
      * @brief Polls SDL events and changes the object fields accordingly
      */
     void poll_events();
-    /**
-     * Has the game started
-     * @return
-     */
-    bool get_is_playing() const;
 
     /**
      * has the mouse button been pressed
      * @return
      */
-    bool get_is_pressed() const;
+    [[nodiscard]] bool get_is_pressed() const;
+
     /**
      * @brief Is the acceleration key pressed
      *
      * @return true if the acceleration event is happening
      */
-    bool get_is_accelerating() const;
+    [[nodiscard]] bool get_is_accelerating() const;
 
-    bool get_is_braking() const;
+    [[nodiscard]] bool get_is_braking() const;
 
     /**
      * @brief Has a quitting event been received
      *
      * @return true if the quitting should happen
      */
-    bool get_is_quitting() const;
+    [[nodiscard]] bool get_is_quitting() const;
 
-    bool get_wants_to_restart() const;
+    [[nodiscard]] bool get_wants_to_restart() const;
 
-    int get_steering_axis();
+    [[nodiscard]] int get_steering_axis() const;
 };
 
 

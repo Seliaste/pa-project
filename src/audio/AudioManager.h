@@ -12,6 +12,7 @@ private:
     Mix_Music *music;
 public:
     AudioManager();
+
     void playMusic();
 };
 
