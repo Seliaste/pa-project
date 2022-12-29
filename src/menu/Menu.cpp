@@ -7,38 +7,33 @@
 #include <string>
 #include <iostream>
 #include <SDL_image.h>
-Menu::Menu(EventManager* events ) {
+Menu::Menu(EventManager* events,SDL_Window *window) {
     keep_displaying = true;
     menu_font = TTF_OpenFont("../resources/fonts/Xenogears.ttf",64);
     eventManager = events;
-    bg_file = "../resources/pitstop_car_10.png";
-
-
+    SDL_Surface* surface = IMG_Load("../resources/pitstop_car_10.png");
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if(surface == nullptr)
+    {
+        printf( "Unable to load background image! SDL_image Error: %s\n", IMG_GetError() );
+    }
+    tex_bg = SDL_CreateTextureFromSurface(renderer,surface);
+    SDL_FreeSurface(surface);
+    SDL_GetWindowSize(window,&window_size_x,&window_size_y);
 }
 
-void Menu::display_main_menu(SDL_Window *window) {
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    int x;
-    int y;
-    SDL_GetWindowSize(window,&x,&y);
-    SDL_Surface* surface = IMG_Load(bg_file);
-    if(surface == NULL)
-    {
-        printf( "Unable to load image %s! SDL_image Error: %s\n", bg_file, IMG_GetError() );
-    }
-    SDL_Texture* texture_bg = SDL_CreateTextureFromSurface(renderer,surface);
-    SDL_FreeSurface(surface);
+void Menu::display_main_menu() {
     while (keep_displaying)
     {
         eventManager->poll_events();
-        display_menu_bg(texture_bg);
-        display_menu_item("Initial C",x/2, 64);
-        display_button("START",x/2, 256,TTF_OpenFont("../resources/fonts/Facon.ttf",64));
+        display_menu_bg(tex_bg);
+        display_menu_item("Initial C",window_size_x/2, 64);
+        display_button("START",window_size_x/2, 256,TTF_OpenFont("../resources/fonts/Facon.ttf",64));
         SDL_RenderPresent(renderer);
         keep_displaying = !eventManager->get_is_quitting();
         start_game();
     }
-    SDL_DestroyTexture(texture_bg);
+    SDL_DestroyTexture(tex_bg);
 }
 void Menu::display_menu_bg(SDL_Texture* texture_bg){
     SDL_RenderCopy(renderer, texture_bg, nullptr, nullptr);

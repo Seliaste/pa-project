@@ -16,10 +16,12 @@ private:
     TTF_Font* menu_font;
     EventManager* eventManager;
     SDL_Rect button;
-    char* bg_file;
+    SDL_Texture* tex_bg;
+    int window_size_x;
+    int window_size_y;
 public:
-    Menu(EventManager* events);
-    void display_main_menu(SDL_Window* window);
+    Menu(EventManager* events, SDL_Window *window);
+    void display_main_menu();
 
     void display_menu_bg(SDL_Texture* texture_bg);
 

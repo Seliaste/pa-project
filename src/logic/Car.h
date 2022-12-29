@@ -16,7 +16,7 @@ private:
     const double turnrate = 0.02;
     glm::dvec2 pos{}; // vector of center
     glm::dvec2 rot{}; // Vector of rotation
-    double front_vel;
+    double front_vel{};
     double curr_speed_x; // for speed_function calculation
     static double speed_function(double x);
 

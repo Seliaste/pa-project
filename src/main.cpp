@@ -15,7 +15,7 @@
 #include "menu/Menu.h"
 #include "audio/AudioManager.h"
 
-int main(int argc, char const *argv[])
+int main()
 {
     SDL_Window *window;  // Déclaration de la fenêtre
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) // Initialisation de la SDL
@@ -39,9 +39,9 @@ int main(int argc, char const *argv[])
     auto* audio = new AudioManager();
     audio->playMusic();
 
-    auto* menu = new Menu(events);
+    auto* menu = new Menu(events,window);
 
-    menu->display_main_menu(window);
+    menu->display_main_menu();
 
     auto* graphics = new GraphicsManager(window);
 
