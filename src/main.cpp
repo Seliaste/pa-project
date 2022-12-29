@@ -13,6 +13,7 @@
 #include "graphics/GraphicsManager.h"
 #include "EventManager.h"
 #include "menu/Menu.h"
+#include "audio/AudioManager.h"
 
 int main(int argc, char const *argv[])
 {
@@ -35,13 +36,14 @@ int main(int argc, char const *argv[])
     TTF_Init();
     auto* events = new EventManager();
 
+    auto* audio = new AudioManager();
+    audio->playMusic();
+
     auto* menu = new Menu(events);
 
     menu->display_main_menu(window);
 
     auto* graphics = new GraphicsManager(window);
-
-
 
     auto* world = new GameWorld();// initialisation des données
     Uint64 tmp;

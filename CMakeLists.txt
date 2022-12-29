@@ -10,7 +10,7 @@ include_directories(PA-Project ${SDL2_INCLUDE_DIRS})
 add_executable(PA-Project src/main.cpp src/logic/GameWorld.cpp src/graphics/GraphicsManager.cpp src/logic/Car.cpp src/logic/Car.h src/EventManager.cpp src/EventManager.h src/logic/Trigger.cpp src/logic/Trigger.h src/logic/Timer.cpp src/logic/Timer.h src/logic/Track.cpp src/logic/Track.h src/menu/Menu.cpp src/menu/Menu.h src/audio/AudioManager.cpp src/audio/AudioManager.h)
 
 
-target_link_libraries(PA-Project ${SDL2_LIBRARIES} SDL2_ttf SDL2_image)
+target_link_libraries(PA-Project ${SDL2_LIBRARIES} SDL2_ttf SDL2_image SDL2_mixer)
 
 add_subdirectory(lib/glm)
 target_link_libraries(PA-Project glm::glm)

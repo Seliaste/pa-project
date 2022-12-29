@@ -8,9 +8,11 @@
 #include <SDL2/SDL_mixer.h>
 
 class AudioManager {
+private:
     Mix_Music *music;
-    Mix_Chunk *buttonclick;
+public:
     AudioManager();
+    void playMusic();
 };
 
 
