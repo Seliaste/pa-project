@@ -21,16 +21,16 @@ private:
     int window_size_y{};
 
     // macro to display the background
-    void display_menu_bg(SDL_Texture *texture_bg);
+    void displayMenuBg(SDL_Texture *texture_bg);
 
     // macro to display a menu text
-    void display_menu_text(const char *text, int x, int y);
+    void displayMenuText(const char *text, int x, int y);
 
     // macro to display a menu button
-    void display_button(const char *, int x, int y, TTF_Font *font);
+    void displayButton(const char *text, int x, int y, TTF_Font *font);
 
     // checks if the start button has been pressed
-    void start_game_button_check();
+    void startGameButtonCheck();
 
 public:
     Menu(EventManager *events, SDL_Window *window);
@@ -38,7 +38,9 @@ public:
     /**
      * @brief starts the main menu displaying loop. Doesnt stop until user has finished interacting
      */
-    void display_main_menu();
+    void displayMainMenu();
+
+    void displayTrackSelection();
 };
 
 

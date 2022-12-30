@@ -20,24 +20,24 @@ Menu::Menu(EventManager *events, SDL_Window *window) {
     SDL_GetWindowSize(window, &window_size_x, &window_size_y);
 }
 
-void Menu::display_main_menu() {
+void Menu::displayMainMenu() {
     while (keep_displaying) {
         eventManager->poll_events();
-        display_menu_bg(tex_bg);
-        display_menu_text("Initial C", window_size_x / 2, 64);
-        display_button("START", window_size_x / 2, 256, TTF_OpenFont("../resources/fonts/Facon.ttf", 64));
+        displayMenuBg(tex_bg);
+        displayMenuText("Initial C", window_size_x / 2, 64);
+        displayButton("START", window_size_x / 2, 256, TTF_OpenFont("../resources/fonts/Facon.ttf", 64));
         SDL_RenderPresent(renderer);
         keep_displaying = !eventManager->get_is_quitting();
-        start_game_button_check();
+        startGameButtonCheck();
     }
     SDL_DestroyTexture(tex_bg);
 }
 
-void Menu::display_menu_bg(SDL_Texture *texture_bg) {
+void Menu::displayMenuBg(SDL_Texture *texture_bg) {
     SDL_RenderCopy(renderer, texture_bg, nullptr, nullptr);
 }
 
-void Menu::display_menu_text(const char *text, int x, int y) {
+void Menu::displayMenuText(const char *text, int x, int y) {
     SDL_Color color = {255, 255, 255};
     SDL_Surface *surface = TTF_RenderText_Solid(menu_font, text, color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -48,7 +48,7 @@ void Menu::display_menu_text(const char *text, int x, int y) {
 
 }
 
-void Menu::display_button(const char *text, int x, int y, TTF_Font *font) {
+void Menu::displayButton(const char *text, int x, int y, TTF_Font *font) {
     SDL_Color color = {255, 255, 255};
     SDL_Surface *surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -59,7 +59,7 @@ void Menu::display_button(const char *text, int x, int y, TTF_Font *font) {
     SDL_FreeSurface(surface);
 }
 
-void Menu::start_game_button_check() {
+void Menu::startGameButtonCheck() {
     int pos_x, pos_y;
     if (eventManager->get_is_pressed()) {
         SDL_GetMouseState(&pos_x, &pos_y);

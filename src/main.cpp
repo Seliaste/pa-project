@@ -45,7 +45,7 @@ int main() {
     audio->playMusic(); // Plays main game music
 
     auto *menu = new Menu(events, window);
-    menu->display_main_menu();
+    menu->displayMainMenu();
     // whats is written below won't run before the menu has finished displaying
 
     auto *graphics = new GraphicsManager(window);
