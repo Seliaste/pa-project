@@ -17,7 +17,7 @@ private:
     int win_size_x{};
     int win_size_y{};
     SDL_Renderer *renderer;
-    SDL_Texture *bgtextroad; /*!< Textures liées à l'image du fond de l'écran. */
+    SDL_Texture *bgtextroad;
     SDL_Texture *bgtextgrass;
     SDL_Texture *bgtextsand;
     SDL_Texture *bgtexttree;
@@ -29,38 +29,50 @@ public:
     explicit GraphicsManager(SDL_Window *window);
 
     /**
-    * @brief charge une image à partir d'un fichier
+    * Loads a texture from a file
     *
-    * @param nomfichier
-    * @return SDL_Texture*
+    * @param file_name path to the file from the src folder
+    * @return SDL_Texture* corresponding texture
     */
-    SDL_Texture *load_image(const char *nomfichier);
+    SDL_Texture *loadBMPImage(const char *file_name);
 
 
     /**
- * @brief efface les données graphiques
- *
- * @param resources
- */
-    void clean_graphics();
-
-/**
- *@brief charge les images et les affiche
- * @return void
- */
-    void add_images_to_renderer(GameWorld *world);
-
-    void add_timer_text_to_renderer(GameWorld *world);
-
-    void update_display(GameWorld *world);
+     * @brief Cleans graphical data
+     *
+     */
+    void cleanGraphics();
 
     /**
-     * Affiche les textures selon le fichier track
+     * Adds images to screen
      * @param world
      */
-    void render_track(GameWorld *world);
+    void addImagesToRenderer(GameWorld *world);
 
-    SDL_Texture *load_png(const char *nomfichier);
+    /**
+     * Adds the timer text to the screen
+     * @param world
+     */
+    void addTimerTextToRenderer(GameWorld *world);
+
+    /**
+     * Refreshes the display
+     * @param world
+     */
+    void updateDisplay(GameWorld *world);
+
+    /**
+     * Displays the track textures
+     * @param world
+     */
+    void renderTrack(GameWorld *world);
+
+    /**
+     * Loads PNG files and creates a texture from it
+     * @param file_name path to the file from the src folder
+     * @return SDL_Texture* corresponding texture
+     */
+    SDL_Texture *loadPNGImage(const char *file_name);
 };
 
 

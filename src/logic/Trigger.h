@@ -24,7 +24,12 @@ public:
      */
     Trigger(int x, int y, int w, int h);
 
-    bool is_overlapping(Car *player) const;
+    /**
+     * Checks for collision between a car and this trigger
+     * @param car Car to check collision for
+     * @return true if there is overlap
+     */
+    bool isOverlapping(Car *car) const;
 };
 
 

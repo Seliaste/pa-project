@@ -13,12 +13,12 @@ private:
     constexpr static double v_max = 2;
     bool slowed;
     const double acceleration = 0.0125;
-    const double turnrate = 0.02;
+    const double turn_rate = 0.02;
     glm::dvec2 pos{}; // vector of center
     glm::dvec2 rot{}; // Vector of rotation
     double front_vel{};
-    double curr_speed_x; // for speed_function calculation
-    static double speed_function(double x);
+    double curr_speed_x; // for speedFunction calculation
+    static double speedFunction(double x);
 
 public:
     /**
@@ -31,7 +31,7 @@ public:
     /**
      * @brief Updates the car position according to its current variables
      */
-    void compute_car_position();
+    void computeCarPosition();
 
     /**
      * @brief Updates car values to increase speed.
@@ -54,29 +54,29 @@ public:
     /**
      * @brief Gets the horizontal position on the car in the game world
      */
-    [[nodiscard]] double get_pos_x() const;
+    [[nodiscard]] double getPosX() const;
 
     /**
      * @brief Gets the vertical position on the car in the game world
      */
-    [[nodiscard]] double get_pos_y() const;
+    [[nodiscard]] double getPosY() const;
 
     /**
      * @brief Gets the angle the car is currently having
      */
-    [[nodiscard]] double get_rotation_degrees() const;
+    [[nodiscard]] double getRotationDegrees() const;
 
     /**
      * @brief Applies a slowdown, i.e. when the car is on a tile that slows down
      */
-    void apply_slowdown();
+    void applySlowdown();
 
     /**
      *
      * @param track The track the car is on right now
      * @return character representing the tile type
      */
-    char get_tile_under_car(Track *track) const;
+    char getTileUnderCar(Track *track) const;
 };
 
 #endif //PA_PROJECT_CAR_H

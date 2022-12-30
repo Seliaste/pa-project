@@ -18,15 +18,15 @@ Car::Car(double x, double y) {
     slowed = false;
 }
 
-void Car::compute_car_position() {
-    front_vel = speed_function(curr_speed_x) / (slowed ? 2 : 1);
+void Car::computeCarPosition() {
+    front_vel = speedFunction(curr_speed_x) / (slowed ? 2 : 1);
     pos += rot * front_vel;
     if (slowed) {
         slowed = false;
     }
 }
 
-double Car::speed_function(double x) {
+double Car::speedFunction(double x) {
     return -(1 - exp(v_max * x));
 }
 
@@ -49,28 +49,28 @@ void Car::steer(int rate) {
     if (steer_speed_coeff > 1) {
         steer_speed_coeff = 1;
     }
-    double angle = (rate * turnrate) * steer_speed_coeff;
+    double angle = (rate * turn_rate) * steer_speed_coeff;
     rot = glm::rotate(rot, angle);
 }
 
-double Car::get_pos_x() const {
+double Car::getPosX() const {
     return this->pos.x;
 }
 
-double Car::get_pos_y() const {
+double Car::getPosY() const {
     return this->pos.y;
 }
 
-double Car::get_rotation_degrees() const {
+double Car::getRotationDegrees() const {
     return -glm::degrees(glm::orientedAngle(rot, glm::dvec2(1, 0)));
 }
 
-char Car::get_tile_under_car(Track *track) const {
-    int tilesize = track->get_tile_size();
-    return track->get_tile_type(floor(pos.x / tilesize), floor(pos.y / tilesize));
+char Car::getTileUnderCar(Track *track) const {
+    int tilesize = track->getTileSize();
+    return track->getTileType(floor(pos.x / tilesize), floor(pos.y / tilesize));
 }
 
-void Car::apply_slowdown() {
+void Car::applySlowdown() {
     slowed = true;
 }
 

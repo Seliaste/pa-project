@@ -9,10 +9,10 @@ Trigger::Trigger(int x, int y, int w, int h) {
     dimension = glm::vec2(w, h);
 }
 
-bool Trigger::is_overlapping(Car *player) const {
+bool Trigger::isOverlapping(Car *car) const {
     return
-            player->get_pos_x() >= origin.x &&
-            player->get_pos_x() <= origin.x + dimension.x &&
-            player->get_pos_y() >= origin.y &&
-            player->get_pos_y() <= origin.y + dimension.y;
+            car->getPosX() >= origin.x &&
+            car->getPosX() <= origin.x + dimension.x &&
+            car->getPosY() >= origin.y &&
+            car->getPosY() <= origin.y + dimension.y;
 }

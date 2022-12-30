@@ -5,16 +5,16 @@
 GraphicsManager::GraphicsManager(SDL_Window *window) {
     IMG_Init(IMG_INIT_PNG);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    bgtextroad = load_image("../resources/road.bmp");
-    bgtextgrass = load_png("../resources/grass.png");
-    bgtextsand = load_png("../resources/sand.png");
-    bgtexttree = load_png("../resources/tree_bushes.png");
-    car = load_png("../resources/pitstop_car_10.png");
+    bgtextroad = loadBMPImage("../resources/road.bmp");
+    bgtextgrass = loadPNGImage("../resources/grass.png");
+    bgtextsand = loadPNGImage("../resources/sand.png");
+    bgtexttree = loadPNGImage("../resources/tree_bushes.png");
+    car = loadPNGImage("../resources/pitstop_car_10.png");
     timefont = TTF_OpenFont("../resources/fonts/ShareTechMono-Regular.ttf", 32);
 
 }
 
-void GraphicsManager::clean_graphics() {
+void GraphicsManager::cleanGraphics() {
     SDL_DestroyTexture(this->bgtextroad);
     SDL_DestroyTexture(this->bgtextgrass);
     SDL_DestroyTexture(this->car);
@@ -22,38 +22,38 @@ void GraphicsManager::clean_graphics() {
     SDL_DestroyRenderer(this->renderer);
 }
 
-SDL_Texture *GraphicsManager::load_image(const char *nomfichier) {
-    SDL_Surface *surface = SDL_LoadBMP(nomfichier);
+SDL_Texture *GraphicsManager::loadBMPImage(const char *file_name) {
+    SDL_Surface *surface = SDL_LoadBMP(file_name);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
     return texture;
 }
 
-SDL_Texture *GraphicsManager::load_png(const char *nomfichier) {
-    SDL_Surface *surface = IMG_Load(nomfichier);
+SDL_Texture *GraphicsManager::loadPNGImage(const char *file_name) {
+    SDL_Surface *surface = IMG_Load(file_name);
     if (surface == nullptr) {
-        printf("Unable to load image %s! SDL_image Error: %s\n", nomfichier, IMG_GetError());
+        printf("Unable to load image %s! SDL_image Error: %s\n", file_name, IMG_GetError());
     }
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
     return texture;
 }
 
-void GraphicsManager::update_display(GameWorld *world) {
+void GraphicsManager::updateDisplay(GameWorld *world) {
     SDL_RenderClear(renderer);
     SDL_GetRendererOutputSize(renderer, &win_size_x, &win_size_y);
-    render_track(world);
-    add_images_to_renderer(world);
-    add_timer_text_to_renderer(world);
+    renderTrack(world);
+    addImagesToRenderer(world);
+    addTimerTextToRenderer(world);
     SDL_RenderPresent(renderer);
 }
 
-void GraphicsManager::add_timer_text_to_renderer(GameWorld *world) {
+void GraphicsManager::addTimerTextToRenderer(GameWorld *world) {
     SDL_Color color = {255, 255, 255};
     char curr_time[20];
-    world->getLapTimer()->get_timer_string(curr_time);
+    world->getLapTimer()->getTimerString(curr_time);
     char timer_string[80];
-    Uint32 best = world->getTrack()->get_best_time();
+    Uint32 best = world->getTrack()->getBestTime();
     std::sprintf(timer_string, "Time: %s\nBest: %u:%02u", curr_time, best / 1000, best % 1000 / 10);
     SDL_Surface *surface = TTF_RenderText_Blended_Wrapped(timefont, timer_string, color, 1000);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -64,7 +64,7 @@ void GraphicsManager::add_timer_text_to_renderer(GameWorld *world) {
 
 }
 
-void GraphicsManager::add_images_to_renderer(GameWorld *world) {
+void GraphicsManager::addImagesToRenderer(GameWorld *world) {
     SDL_Point size;
     SDL_Rect SrcR;
     SrcR.x = 0;
@@ -78,11 +78,11 @@ void GraphicsManager::add_images_to_renderer(GameWorld *world) {
     DestR.w = ceil(size.x);
     DestR.h = ceil(size.y);
     //SDL_RenderCopy(renderer, background, nullptr, nullptr);
-    SDL_RenderCopyEx(renderer, car, &SrcR, &DestR, world->getPlayerCar()->get_rotation_degrees(), nullptr,
+    SDL_RenderCopyEx(renderer, car, &SrcR, &DestR, world->getPlayerCar()->getRotationDegrees(), nullptr,
                      SDL_FLIP_NONE);
 }
 
-void GraphicsManager::render_track(GameWorld *world) {
+void GraphicsManager::renderTrack(GameWorld *world) {
     SDL_Point size1;
     SDL_Point size2;
     SDL_Rect SrcR;
@@ -95,12 +95,12 @@ void GraphicsManager::render_track(GameWorld *world) {
     SDL_Rect DestR;
     Track *track = world->getTrack();
     SDL_Texture *texture;
-    glm::ivec2 size = track->get_size();
-    int tile_size = track->get_tile_size();
+    glm::ivec2 size = track->getSize();
+    int tile_size = track->getTileSize();
     for (int row = 0; row < size.y; row++) {
         for (int col = 0; col < size.x; col++) {
             SDL_Texture *overlay = nullptr; // pour les arbres et petites décos
-            switch (track->get_tile_type(col, row)) {
+            switch (track->getTileType(col, row)) {
                 case 's':
                 case 'c':
                 case 'r':
@@ -118,8 +118,8 @@ void GraphicsManager::render_track(GameWorld *world) {
                     texture = bgtextgrass;
                     break;
             }
-            DestR.x = floor((col * tile_size) - world->getPlayerCar()->get_pos_x() + ceil(win_size_x / 2));
-            DestR.y = floor((row * tile_size) - world->getPlayerCar()->get_pos_y() + ceil(win_size_y / 2));
+            DestR.x = floor((col * tile_size) - world->getPlayerCar()->getPosX() + ceil(win_size_x / 2));
+            DestR.y = floor((row * tile_size) - world->getPlayerCar()->getPosY() + ceil(win_size_y / 2));
             DestR.w = tile_size;
             DestR.h = tile_size;
             SDL_RenderCopy(renderer, texture, &SrcR, &DestR);

@@ -12,11 +12,11 @@ void Timer::reset() {
     lastResetTick = SDL_GetTicks64();
 }
 
-Uint32 Timer::get_current_time() const {
+Uint32 Timer::getCurrentTime() const {
     return SDL_GetTicks() - lastResetTick;
 }
 
-void Timer::get_timer_string(char *str) const {
-    Uint32 time = get_current_time();
+void Timer::getTimerString(char *str) const {
+    Uint32 time = getCurrentTime();
     sprintf(str, "%u:%02u", time / 1000, time % 1000 / 10);
 }

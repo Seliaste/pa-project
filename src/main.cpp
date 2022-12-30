@@ -64,7 +64,7 @@ int main() {
         // 3-steps game loop: events gathering, world data updating, and displaying.
         events->poll_events();
         world->updateWorld(events);
-        graphics->update_display(world);
+        graphics->updateDisplay(world);
 
         toWait = 17 - (SDL_GetTicks() - tmp);
         SDL_Delay(toWait <= 17 ? toWait : 0);   // delays to framelimit to ~60fps
@@ -72,7 +72,7 @@ int main() {
 
 
     // -- DATA CLEANUP --
-    graphics->clean_graphics();
+    graphics->cleanGraphics();
     delete graphics;
     world->clearGameData();
     delete world;

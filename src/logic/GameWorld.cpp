@@ -3,8 +3,8 @@
 
 GameWorld::GameWorld() {
     track = new Track("Monza", "../resources/track1.txt");
-    start_pos = track->get_start_position();
-    int tile_size = track->get_tile_size();
+    start_pos = track->getStartPosition();
+    int tile_size = track->getTileSize();
     startline = new Trigger(start_pos.x, start_pos.y, tile_size, tile_size);
     // initializes player car in the middle of the start line
     player = new Car(ceil(start_pos.x + tile_size / 2), ceil(start_pos.y + tile_size / 2));
@@ -23,13 +23,13 @@ void GameWorld::updateWorld(EventManager *events) {
         player->brake(.1); // passive decay
     }
     player->steer(events->get_steering_axis());
-    auto tile_under = player->get_tile_under_car(track);
+    auto tile_under = player->getTileUnderCar(track);
     if (tile_under == 'o' || tile_under == 'g' || tile_under == 't') {
-        player->apply_slowdown();
+        player->applySlowdown();
     }
-    player->compute_car_position();
+    player->computeCarPosition();
     computeCheckpointUpdates();
-    if (startline->is_overlapping(player)) {
+    if (startline->isOverlapping(player)) {
         tryValidatingLap();
     }
     if (events->get_wants_to_restart()) {
@@ -48,7 +48,7 @@ void GameWorld::clearGameData() {
 }
 
 void GameWorld::resetGame() {
-    int tile_size = track->get_tile_size();
+    int tile_size = track->getTileSize();
     delete player;
     player = new Car(ceil(start_pos.x + tile_size / 2), ceil(start_pos.y + tile_size / 2));
     lap_timer->reset();
@@ -71,11 +71,11 @@ Track *GameWorld::getTrack() {
 
 void GameWorld::initCheckpoints() {
     int i = 0;
-    glm::ivec2 size = track->get_size();
-    int tilesize = track->get_tile_size();
+    glm::ivec2 size = track->getSize();
+    int tilesize = track->getTileSize();
     for (int y = 0; y < size.y; y++) {
         for (int x = 0; x < size.x; x++) {
-            if (track->get_tile_type(x, y) == 'c') {
+            if (track->getTileType(x, y) == 'c') {
                 checkpoints[i] = new Trigger(x * tilesize, y * tilesize, tilesize, tilesize);
                 i++;
             }
@@ -85,7 +85,7 @@ void GameWorld::initCheckpoints() {
 
 void GameWorld::computeCheckpointUpdates() {
     for (int i = 0; i < 3; i++) {
-        if (checkpoints[i]->is_overlapping(player)) {
+        if (checkpoints[i]->isOverlapping(player)) {
             validated[i] = true;
         }
     }
@@ -95,7 +95,7 @@ void GameWorld::tryValidatingLap() {
     bool allvalid = true;
     for (bool validation: validated) { allvalid = allvalid && validation; } // check all CPs
     if (allvalid) {
-        track->write_lap(lap_timer->get_current_time());
+        track->writeLap(lap_timer->getCurrentTime());
         lap_timer->reset();
         validated[0] = false;
         validated[1] = false;

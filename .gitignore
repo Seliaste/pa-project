@@ -78,3 +78,5 @@ build/*
 cmake-build-debug
 
 data/*
+
+!/data/.gitkeep
