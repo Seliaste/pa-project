@@ -12,6 +12,27 @@
 class Menu {
 private:
     bool keep_displaying;
+public:
+    void setKeepDisplaying(bool keepDisplaying);
+
+public:
+    bool isKeepDisplaying() const;
+
+    SDL_Renderer *getRenderer() const;
+
+    TTF_Font *getMenuFont() const;
+
+    EventManager *getEventManager() const;
+
+    const SDL_Rect &getButton() const;
+
+    SDL_Texture *getTexBg() const;
+
+    int getWindowSizeX() const;
+
+    int getWindowSizeY() const;
+
+private:
     SDL_Renderer *renderer;
     TTF_Font *menu_font;
     EventManager *eventManager;
@@ -19,7 +40,7 @@ private:
     SDL_Texture *tex_bg;
     int window_size_x{};
     int window_size_y{};
-
+public:
     // macro to display the background
     void displayMenuBg(SDL_Texture *texture_bg);
 
@@ -32,7 +53,6 @@ private:
     // checks if the start button has been pressed
     void startGameButtonCheck();
 
-public:
     Menu(EventManager *events, SDL_Window *window);
 
     /**
@@ -40,7 +60,6 @@ public:
      */
     void displayMainMenu();
 
-    void displayTrackSelection();
 };
 
 

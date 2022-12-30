@@ -63,10 +63,46 @@ void Menu::startGameButtonCheck() {
     int pos_x, pos_y;
     if (eventManager->get_is_pressed()) {
         SDL_GetMouseState(&pos_x, &pos_y);
-        if ((button.x < pos_x && pos_x < button.x + button.w) && (button.y < pos_x && pos_y < button.y + button.h)) {
+        if ((button.x < pos_x && pos_x < button.x + button.w) && (button.y < pos_y && pos_y < button.y + button.h)) {
             keep_displaying = false;
             SDL_DestroyRenderer(renderer);
         }
     }
+}
+
+bool Menu::isKeepDisplaying() const {
+    return keep_displaying;
+}
+
+SDL_Renderer *Menu::getRenderer() const {
+    return renderer;
+}
+
+TTF_Font *Menu::getMenuFont() const {
+    return menu_font;
+}
+
+EventManager *Menu::getEventManager() const {
+    return eventManager;
+}
+
+const SDL_Rect &Menu::getButton() const {
+    return button;
+}
+
+SDL_Texture *Menu::getTexBg() const {
+    return tex_bg;
+}
+
+int Menu::getWindowSizeX() const {
+    return window_size_x;
+}
+
+int Menu::getWindowSizeY() const {
+    return window_size_y;
+}
+
+void Menu::setKeepDisplaying(bool keepDisplaying) {
+    keep_displaying = keepDisplaying;
 }
 

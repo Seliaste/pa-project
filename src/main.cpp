@@ -13,6 +13,7 @@
 #include "graphics/GraphicsManager.h"
 #include "EventManager.h"
 #include "menu/Menu.h"
+#include "menu/TrackMenu.h"
 #include "audio/AudioManager.h"
 
 int main() {
@@ -47,7 +48,9 @@ int main() {
     auto *menu = new Menu(events, window);
     menu->displayMainMenu();
     // whats is written below won't run before the menu has finished displaying
-
+    auto *track_selection_menu = new Menu(events,window);
+    auto *track_menu = new TrackMenu(track_selection_menu);
+    track_menu->displayTrackSelection();
     auto *graphics = new GraphicsManager(window);
 
     auto *world = new GameWorld(); // Initializes game data
