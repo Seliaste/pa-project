@@ -1,8 +1,8 @@
 #include "GameWorld.h"
 #include <iostream>
-#include "../menu/TrackMenu.h"
+
 GameWorld::GameWorld() {
-    track = TrackMenu->getTrackQueue().front();
+    track = new Track("Monza", "../resources/track2.txt","../resources/monza.png");
     start_pos = track->getStartPosition();
     int tile_size = track->getTileSize();
     startline = new Trigger(start_pos.x, start_pos.y, tile_size, tile_size);
