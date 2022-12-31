@@ -9,17 +9,26 @@
 #include <SDL_ttf.h>
 #include "../EventManager.h"
 #include "Menu.h"
+#include "../logic/Track.h"
 #include <string>
-#include <list>
+#include <queue>
 class TrackMenu{
 private:
     Menu *menu;
-    std::list<std::string> track_names;
-    std::list<std::string> track_files;
-    std::list<std::string> track_images;
+    SDL_Rect right_arrow;
+    std::queue<Track*> track_queue;
+    SDL_Texture* tex_arrow;
+    SDL_Rect button_arrow{};
+    void fillLists();
 
 public:
     TrackMenu(Menu* menu);
     void displayTrackSelection();
+
+    void displayArrowButton(int x, int y);
+
+    void trackPickCheck();
+
+    const std::queue<Track *> &getTrackQueue() const;
 };
 #endif //PA_PROJECT_TRACKMENU_H

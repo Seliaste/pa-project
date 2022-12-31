@@ -20,12 +20,17 @@ Menu::Menu(EventManager *events, SDL_Window *window) {
     SDL_GetWindowSize(window, &window_size_x, &window_size_y);
 }
 
+void Menu::setTexBg(SDL_Texture *texBg) {
+    tex_bg = texBg;
+}
+
 void Menu::displayMainMenu() {
+    SDL_Color color = {255, 255, 255};
     while (keep_displaying) {
         eventManager->poll_events();
         displayMenuBg(tex_bg);
-        displayMenuText("Initial C", window_size_x / 2, 64);
-        displayButton("START", window_size_x / 2, 256, TTF_OpenFont("../resources/fonts/Facon.ttf", 64));
+        displayMenuText("Initial C", window_size_x / 2, 64,color);
+        displayButton("START", window_size_x / 2, 256, TTF_OpenFont("../resources/fonts/Facon.ttf", 64),color);
         SDL_RenderPresent(renderer);
         keep_displaying = !eventManager->get_is_quitting();
         startGameButtonCheck();
@@ -37,8 +42,7 @@ void Menu::displayMenuBg(SDL_Texture *texture_bg) {
     SDL_RenderCopy(renderer, texture_bg, nullptr, nullptr);
 }
 
-void Menu::displayMenuText(const char *text, int x, int y) {
-    SDL_Color color = {255, 255, 255};
+void Menu::displayMenuText(const char *text, int x, int y,SDL_Color color) {
     SDL_Surface *surface = TTF_RenderText_Solid(menu_font, text, color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dstrect = {x - (surface->w / 2), y, surface->w, surface->h};
@@ -48,8 +52,7 @@ void Menu::displayMenuText(const char *text, int x, int y) {
 
 }
 
-void Menu::displayButton(const char *text, int x, int y, TTF_Font *font) {
-    SDL_Color color = {255, 255, 255};
+void Menu::displayButton(const char *text, int x, int y, TTF_Font *font, SDL_Color color) {
     SDL_Surface *surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dstrect = {x - (surface->w / 2), y, surface->w, surface->h};
@@ -58,6 +61,7 @@ void Menu::displayButton(const char *text, int x, int y, TTF_Font *font) {
     SDL_DestroyTexture(texture);
     SDL_FreeSurface(surface);
 }
+
 
 void Menu::startGameButtonCheck() {
     int pos_x, pos_y;

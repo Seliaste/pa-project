@@ -45,10 +45,10 @@ public:
     void displayMenuBg(SDL_Texture *texture_bg);
 
     // macro to display a menu text
-    void displayMenuText(const char *text, int x, int y);
+    void displayMenuText(const char *text, int x, int y,SDL_Color color);
 
     // macro to display a menu button
-    void displayButton(const char *text, int x, int y, TTF_Font *font);
+    void displayButton(const char *text, int x, int y, TTF_Font *font,SDL_Color color);
 
     // checks if the start button has been pressed
     void startGameButtonCheck();
@@ -59,6 +59,8 @@ public:
      * @brief starts the main menu displaying loop. Doesnt stop until user has finished interacting
      */
     void displayMainMenu();
+
+    void setTexBg(SDL_Texture *texBg);
 
 };
 
