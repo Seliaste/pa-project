@@ -12,6 +12,7 @@
 #include "Timer.h"
 #include "Track.h"
 #include "Trigger.h"
+#include "../menu/TrackMenu.h"
 
 class GameWorld {
 private:
@@ -24,7 +25,7 @@ private:
     bool validated[3]{false, false, false};
 
 public:
-    GameWorld();
+    GameWorld(TrackMenu* track_menu );
 
     /**
      * @brief Updates the game world accordingly

@@ -53,7 +53,7 @@ int main() {
     track_menu->displayTrackSelection();
     auto *graphics = new GraphicsManager(window);
 
-    auto *world = new GameWorld(); // Initializes game data
+    auto *world = new GameWorld(track_menu); // Initializes game data
 
     // Useful for frame limiter calculation
     Uint64 tmp;
