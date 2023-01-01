@@ -29,6 +29,6 @@ public:
 
     void trackPickCheck();
 
-    const std::queue<Track *> &getTrackQueue() const;
+    const std::queue<Track *> getTrackQueue() const;
 };
 #endif //PA_PROJECT_TRACKMENU_H

@@ -11,10 +11,6 @@ TrackMenu::TrackMenu(Menu* track_menu){
     fillLists();
 }
 
-const std::queue<Track *> &TrackMenu::getTrackQueue() const {
-    return track_queue;
-}
-
 void TrackMenu::fillLists() {
     Track* indianapolis = new Track("Indianapolis","../resources/track1.txt","../resources/indianapolis.png");
     track_queue.push(indianapolis);
@@ -63,4 +59,8 @@ void TrackMenu::trackPickCheck() {
 
         }
     }
+}
+
+const std::queue<Track *> TrackMenu::getTrackQueue() const {
+    return track_queue;
 }
