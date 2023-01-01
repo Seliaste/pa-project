@@ -16,9 +16,9 @@ const std::queue<Track *> &TrackMenu::getTrackQueue() const {
 }
 
 void TrackMenu::fillLists() {
-    Track* indianapolis = new Track("Indianapolis Superspeedway","../resources/track1.txt","../resources/indianapolis.png");
+    Track* indianapolis = new Track("Indianapolis","../resources/track1.txt","../resources/indianapolis.png");
     track_queue.push(indianapolis);
-    Track* monza = new Track("Autodromo Nazionale di Monza","../resources/track2.txt","../resources/monza.png");
+    Track* monza = new Track("Monza","../resources/track2.txt","../resources/monza.png");
     track_queue.push(monza);
 
 }

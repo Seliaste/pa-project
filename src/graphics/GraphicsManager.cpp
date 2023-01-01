@@ -6,6 +6,8 @@ GraphicsManager::GraphicsManager(SDL_Window *window) {
     IMG_Init(IMG_INIT_PNG);
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     bgtextroad = loadBMPImage("../resources/road.bmp");
+    bgtextstart = loadBMPImage("../resources/start.bmp");
+    bgtextcheck = loadBMPImage("../resources/check.bmp");
     bgtextgrass = loadPNGImage("../resources/grass.png");
     bgtextsand = loadPNGImage("../resources/sand.png");
     bgtexttree = loadPNGImage("../resources/tree_bushes.png");
@@ -102,7 +104,11 @@ void GraphicsManager::renderTrack(GameWorld *world) {
             SDL_Texture *overlay = nullptr; // pour les arbres et petites décos
             switch (track->getTileType(col, row)) {
                 case 's':
+                    texture = bgtextstart;
+                    break;
                 case 'c':
+                    texture = bgtextcheck;
+                    break;
                 case 'r':
                     texture = bgtextroad;
                     break;

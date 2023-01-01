@@ -18,6 +18,8 @@ private:
     int win_size_y{};
     SDL_Renderer *renderer;
     SDL_Texture *bgtextroad;
+    SDL_Texture *bgtextstart;
+    SDL_Texture *bgtextcheck;
     SDL_Texture *bgtextgrass;
     SDL_Texture *bgtextsand;
     SDL_Texture *bgtexttree;
