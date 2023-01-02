@@ -12,23 +12,27 @@
 #include "../logic/Track.h"
 #include <string>
 #include <queue>
-class TrackMenu{
+
+class TrackMenu {
 private:
     Menu *menu;
     SDL_Rect right_arrow{};
-    std::queue<Track*> track_queue;
-    SDL_Texture* tex_arrow{};
+    std::queue<Track *> track_queue;
+    SDL_Texture *tex_arrow{};
     SDL_Rect button_arrow{};
+
     void fillLists();
 
 public:
-    TrackMenu(Menu* menu);
+    explicit TrackMenu(Menu *menu);
+
     void displayTrackSelection();
 
     void displayArrowButton(int x, int y);
 
     void trackPickCheck();
 
-    const std::queue<Track *> getTrackQueue() const;
+    [[nodiscard]] std::queue<Track *> getTrackQueue() const;
 };
+
 #endif //PA_PROJECT_TRACKMENU_H

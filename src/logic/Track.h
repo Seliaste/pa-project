@@ -13,7 +13,7 @@
 class Track {
 private:
     std::string name;
-    char* image; //IMGLoad needs a char*
+    std::string image; //IMGLoad needs a char*
     int tile_size;
     // vector for scalability
     std::vector<std::vector<char>> track_array;
@@ -24,7 +24,7 @@ public:
      * @param title name of the Track
      * @param file name of the file used to fill tab_track
      */
-    Track(std::string title, const std::string &file, char* image);
+    Track(std::string title, const std::string &file, const std::string image);
 
     /**
      * Creates a 2d vector containing the characters from the file
@@ -75,9 +75,9 @@ public:
      */
     [[nodiscard]] Uint32 getBestTime() const;
 
-    const std::string &getName() const;
+    [[nodiscard]] std::string getName() const;
 
-    const char *const getImage() const;
+    [[nodiscard]] std::string getImage() const;
 };
 
 

@@ -9,19 +9,19 @@
 #include <fstream>
 #include "Track.h"
 
-Track::Track(std::string title, const std::string &file, char* img) {
+Track::Track(std::string title, const std::string &file, std::string img) {
     name = std::move(title);
-    image = img;
+    image = std::move(img);
     tile_size = 128;
     fillTab(file);
     current_best = readBestTime();
 }
 
-const std::string &Track::getName() const {
+std::string Track::getName() const {
     return name;
 }
 
-const char *const Track::getImage() const {
+std::string Track::getImage() const {
     return image;
 }
 
