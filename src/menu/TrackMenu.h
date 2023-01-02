@@ -33,6 +33,8 @@ public:
     void trackPickCheck();
 
     [[nodiscard]] std::queue<Track *> getTrackQueue() const;
+
+    void cleanResources();
 };
 
 #endif //PA_PROJECT_TRACKMENU_H

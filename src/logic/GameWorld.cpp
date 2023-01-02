@@ -39,7 +39,6 @@ void GameWorld::updateWorld(EventManager *events) {
 void GameWorld::clearGameData() {
     delete player;
     delete lap_timer;
-    delete track;
     delete startline;
     for (Trigger *cp: checkpoints) {
         delete cp;

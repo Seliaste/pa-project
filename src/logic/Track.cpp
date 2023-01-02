@@ -31,8 +31,6 @@ void Track::fillTab(const std::string &file_name) {
 
     std::ifstream inFile(file_name);
 
-    std::vector<std::vector<char>> tab_track;
-
     if (inFile) {
         while (getline(inFile, line, '\n')) {
             //create a temporary vector that will contain all the columns
@@ -46,13 +44,12 @@ void Track::fillTab(const std::string &file_name) {
                 tempVec.push_back(word);
             }
             //now all the words from the current line has been added to the temporary vector
-            tab_track.emplace_back(tempVec);
+            this->track_array.emplace_back(tempVec);
         }
     } else {
         throw std::invalid_argument("Track file name does not correspond to an actual file");
     }
     inFile.close();
-    this->track_array = tab_track;
 }
 
 glm::ivec2 Track::getSize() {

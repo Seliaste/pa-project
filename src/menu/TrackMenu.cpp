@@ -38,7 +38,7 @@ void TrackMenu::displayTrackSelection() {
         menu->displayMenuBg(menu->getTexBg());
         menu->displayMenuText("CHOOSE YOUR TRACK", menu->getWindowSizeX() / 2, 64, color);
         menu->displayButton("START", menu->getWindowSizeX() / 2, ceil(menu->getWindowSizeY() * 0.9),
-                            TTF_OpenFont("../resources/fonts/Facon.ttf", 64), color);
+                            menu->getMenuFont(), color);
         displayArrowButton(menu->getWindowSizeX(), menu->getWindowSizeY() / 2);
         SDL_RenderPresent(menu->getRenderer());
         menu->setKeepDisplaying(!menu->getEventManager()->get_is_quitting());
@@ -67,4 +67,11 @@ void TrackMenu::trackPickCheck() {
 
 std::queue<Track *> TrackMenu::getTrackQueue() const {
     return track_queue;
+}
+
+void TrackMenu::cleanResources() {
+    while(!track_queue.empty()) {
+        delete track_queue.front();
+        track_queue.pop();
+    }
 }

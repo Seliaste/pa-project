@@ -12,35 +12,30 @@
 class Menu {
 private:
     bool keep_displaying;
-public:
-    void setKeepDisplaying(bool keepDisplaying);
-
-public:
-    bool isKeepDisplaying() const;
-
-    SDL_Renderer *getRenderer() const;
-
-    TTF_Font *getMenuFont() const;
-
-    EventManager *getEventManager() const;
-
-    const SDL_Rect &getButton() const;
-
-    SDL_Texture *getTexBg() const;
-
-    int getWindowSizeX() const;
-
-    int getWindowSizeY() const;
-
-private:
     SDL_Renderer *renderer;
+    TTF_Font *menu_font_2;
     TTF_Font *menu_font;
     EventManager *eventManager;
     SDL_Rect button{};
     SDL_Texture *tex_bg;
     int window_size_x{};
     int window_size_y{};
+
+
 public:
+    void setKeepDisplaying(bool keepDisplaying);
+
+    bool isKeepDisplaying() const;
+
+    SDL_Renderer *getRenderer() const;
+
+    EventManager *getEventManager() const;
+
+    SDL_Texture *getTexBg() const;
+
+    int getWindowSizeX() const;
+
+    int getWindowSizeY() const;
     // macro to display the background
     void displayMenuBg(SDL_Texture *texture_bg);
 
@@ -62,6 +57,9 @@ public:
 
     void setTexBg(SDL_Texture *texBg);
 
+    [[nodiscard]] TTF_Font *getMenuFont() const;
+
+    void cleanMenuResources();
 };
 
 

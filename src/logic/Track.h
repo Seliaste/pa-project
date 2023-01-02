@@ -78,6 +78,8 @@ public:
     [[nodiscard]] std::string getName() const;
 
     [[nodiscard]] std::string getImage() const;
+
+    void destroyTab();
 };
 
 

@@ -8,6 +8,7 @@
 
 Menu::Menu(EventManager *events, SDL_Window *window) {
     keep_displaying = true;
+    menu_font_2 = TTF_OpenFont("../resources/fonts/Facon.ttf", 64);
     menu_font = TTF_OpenFont("../resources/fonts/Xenogears.ttf", 64);
     eventManager = events;
     SDL_Surface *surface = IMG_Load("../resources/pitstop_car_10.png");
@@ -30,7 +31,7 @@ void Menu::displayMainMenu() {
         eventManager->poll_events();
         displayMenuBg(tex_bg);
         displayMenuText("Initial C", window_size_x / 2, 64,color);
-        displayButton("START", window_size_x / 2, 256, TTF_OpenFont("../resources/fonts/Facon.ttf", 64),color);
+        displayButton("START", window_size_x / 2, 256, menu_font_2,color);
         SDL_RenderPresent(renderer);
         keep_displaying = !eventManager->get_is_quitting();
         startGameButtonCheck();
@@ -90,10 +91,6 @@ EventManager *Menu::getEventManager() const {
     return eventManager;
 }
 
-const SDL_Rect &Menu::getButton() const {
-    return button;
-}
-
 SDL_Texture *Menu::getTexBg() const {
     return tex_bg;
 }
@@ -109,4 +106,10 @@ int Menu::getWindowSizeY() const {
 void Menu::setKeepDisplaying(bool keepDisplaying) {
     keep_displaying = keepDisplaying;
 }
+
+void Menu::cleanMenuResources() {
+    TTF_CloseFont(menu_font);
+    TTF_CloseFont(menu_font_2);
+    SDL_DestroyTexture(tex_bg);
+};
 

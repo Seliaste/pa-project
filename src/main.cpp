@@ -49,11 +49,11 @@ int main() {
     menu->displayMainMenu();
     // whats is written below won't run before the menu has finished displaying
     auto *track_selection_menu = new Menu(events,window);
-    auto *track_menu = new TrackMenu(track_selection_menu);
-    track_menu->displayTrackSelection();
+    auto *track_selector = new TrackMenu(track_selection_menu);
+    track_selector->displayTrackSelection();
     auto *graphics = new GraphicsManager(window);
 
-    auto *world = new GameWorld(track_menu); // Initializes game data
+    auto *world = new GameWorld(track_selector); // Initializes game data
 
     // Useful for frame limiter calculation
     Uint64 tmp;
@@ -76,11 +76,17 @@ int main() {
 
     // -- DATA CLEANUP --
     graphics->cleanGraphics();
-    delete graphics;
     world->clearGameData();
+    menu->cleanMenuResources();
+    track_selection_menu->cleanMenuResources();
+    track_selector->cleanResources();
+    delete graphics;
     delete world;
     delete events;
     delete menu;
+    delete track_selection_menu;
+    delete track_selector;
+    delete audio;
     // Quitter SDL
     TTF_Quit();
     SDL_DestroyWindow(window);
