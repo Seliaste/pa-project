@@ -9,7 +9,7 @@
 #include <fstream>
 #include "Track.h"
 
-Track::Track(std::string title, const std::string &file, std::string img) {
+Track::Track(std::string title, const std::string &file,std::string img) {
     name = std::move(title);
     image = std::move(img);
     tile_size = 128;

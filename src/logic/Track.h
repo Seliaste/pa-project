@@ -24,7 +24,7 @@ public:
      * @param title name of the Track
      * @param file name of the file used to fill tab_track
      */
-    Track(std::string title, const std::string &file, const std::string image);
+    Track(std::string title, const std::string &file,std::string image);
 
     /**
      * Creates a 2d vector containing the characters from the file

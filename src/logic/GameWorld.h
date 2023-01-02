@@ -25,7 +25,7 @@ private:
     bool validated[3]{false, false, false};
 
 public:
-    GameWorld(TrackMenu* track_menu );
+    explicit GameWorld(TrackMenu* track_menu );
 
     /**
      * @brief Updates the game world accordingly

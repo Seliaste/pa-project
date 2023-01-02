@@ -2,7 +2,6 @@
 // Created by totomas on 30/12/22.
 //
 #include "TrackMenu.h"
-#include <iostream>
 #include <SDL_image.h>
 #include <queue>
 
@@ -38,7 +37,7 @@ void TrackMenu::displayTrackSelection() {
         menu->getEventManager()->poll_events();
         menu->displayMenuBg(menu->getTexBg());
         menu->displayMenuText("CHOOSE YOUR TRACK", menu->getWindowSizeX() / 2, 64, color);
-        menu->displayButton("START", menu->getWindowSizeX() / 2, menu->getWindowSizeY() * 0.9,
+        menu->displayButton("START", menu->getWindowSizeX() / 2, ceil(menu->getWindowSizeY() * 0.9),
                             TTF_OpenFont("../resources/fonts/Facon.ttf", 64), color);
         displayArrowButton(menu->getWindowSizeX(), menu->getWindowSizeY() / 2);
         SDL_RenderPresent(menu->getRenderer());
