@@ -68,6 +68,8 @@ public:
      * for example a gamepad. Will try to implement later
      */
     [[nodiscard]] int get_steering_axis() const;
+
+    void declareMouseClickRegistered();
 };
 
 

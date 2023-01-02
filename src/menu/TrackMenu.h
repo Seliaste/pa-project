@@ -15,9 +15,9 @@
 class TrackMenu{
 private:
     Menu *menu;
-    SDL_Rect right_arrow;
+    SDL_Rect right_arrow{};
     std::queue<Track*> track_queue;
-    SDL_Texture* tex_arrow;
+    SDL_Texture* tex_arrow{};
     SDL_Rect button_arrow{};
     void fillLists();
 

@@ -5,9 +5,8 @@
 #include <iostream>
 #include <SDL_image.h>
 #include <queue>
-TrackMenu::TrackMenu(Menu* track_menu){
-    menu = track_menu;
-    std::queue<Track*> track_queue;
+TrackMenu::TrackMenu(Menu* menu){
+    this->menu = menu;
     fillLists();
 }
 
@@ -48,6 +47,7 @@ void TrackMenu::displayTrackSelection(){
 void TrackMenu::trackPickCheck() {
     int pos_x, pos_y;
     if (menu->getEventManager()->get_is_pressed()) {
+        menu->getEventManager()->declareMouseClickRegistered();
         SDL_GetMouseState(&pos_x, &pos_y);
         if ((button_arrow.x < pos_x && pos_x < button_arrow.x + button_arrow.w) && (button_arrow.y < pos_y && pos_y < button_arrow.y + button_arrow.h)) {
             SDL_DestroyTexture(menu->getTexBg());

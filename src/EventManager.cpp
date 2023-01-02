@@ -94,3 +94,7 @@ bool EventManager::get_is_braking() const {
 bool EventManager::get_wants_to_restart() const {
     return wants_to_restart;
 }
+
+void EventManager::declareMouseClickRegistered() {
+    this->is_pressed = false;
+}
